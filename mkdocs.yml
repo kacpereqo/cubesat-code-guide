@@ -1,1 +1,8 @@
-site_name: My Docs
+site_name: CubeSat code guide
+
+nav:
+  - Home: index.md
+theme:
+  name: cinder
+# markdown_extensions:
+#   - def_list
