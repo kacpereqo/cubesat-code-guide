@@ -89,17 +89,22 @@
                 <li class="third-level"><a href="#1-czytanie-kodu">1. Czytanie Kodu.</a></li>
                 <li class="third-level"><a href="#2-kod-ma-wyrazac-intencje">2. Kod ma wyrażać intencje.</a></li>
                 <li class="third-level"><a href="#3-type-safety-first">3. Type safety first</a></li>
-                <li class="third-level"><a href="#4-compile-time-run-time">4. compile time &gt;&gt;&gt; run time</a></li>
+                <li class="third-level"><a href="#4-wybieraj-wykonanie-w-compile-time-zamiast-run-time">4. Wybieraj wykonanie w compile time zamiast run time</a></li>
                 <li class="third-level"><a href="#5-abstrakcja-nie-jest-za">5. abstrakcja nie jest zła</a></li>
-                <li class="third-level"><a href="#6-kiss">6. KISS</a></li>
+                <li class="third-level"><a href="#6-pisz-kod-jak-najprosciej-sie-da">6. Pisz kod Jak najprościej sie da</a></li>
             <li class="second-level"><a href="#pisanie-kodu">Pisanie Kodu</a></li>
                 
-                <li class="third-level"><a href="#nie-uzywamy">Nie używamy</a></li>
+                <li class="third-level"><a href="#uzywaj-stl-etl">Używaj STL / ETL</a></li>
+                <li class="third-level"><a href="#do-operacji-bitowych-zawsze-stdbyte">Do operacji bitowych zawsze std::byte</a></li>
+                <li class="third-level"><a href="#error-handling">Error handling</a></li>
             <li class="second-level"><a href="#styl-pisania-kodu">Styl Pisania Kodu</a></li>
                 
                 <li class="third-level"><a href="#dugosc-funkcji">Długość funkcji</a></li>
                 <li class="third-level"><a href="#formatowanie">Formatowanie</a></li>
-                <li class="third-level"><a href="#nazewnictwo-zmiennych">Nazewnictwo zmiennych</a></li>
+                <li class="third-level"><a href="#struktura-projektu">Struktura projektu</a></li>
+                <li class="third-level"><a href="#komentarze">Komentarze</a></li>
+                <li class="third-level"><a href="#nazewnictwo">Nazewnictwo</a></li>
+                <li class="third-level"><a href="#skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</a></li>
                 <li class="third-level"><a href="#funkcje">[?] Funkcje</a></li>
                 <li class="third-level"><a href="#uzywanie-auto">Używanie auto</a></li>
                 <li class="third-level"><a href="#uzywanie-this-">[?] Używanie this-&gt;...</a></li>
@@ -149,22 +154,52 @@ To jest pierwszy i najważniejszy punkt tego dokumentu, kod pisany ma </p>
 <h3 id="3-type-safety-first">3. Type safety first</h3>
 <p>Zgodność typów jest jednym z najpotężniejszych narzędzi walki z robakami (en. bug) w kodzie</p>
 <p>unsafe</p>
-<pre><code>void print_arr(void* arr, size_t len){
-    for(int i = 0; i &lt; len; i++)
-        std::cout &lt;&lt; arr[i];
-}
+<pre><code class="language-cpp">    void print_arr(void* arr, size_t len){
+        for(int i = 0; i &lt; len; i++)
+            std::cout &lt;&lt; arr[i];
+    }
+
+safe
+```cpp
+    template &lt;typename T&gt;
+    void print_arr(std::span&lt;T&gt; arr){
+        for(const auto&amp; item : arr)
+            std::cout &lt;&lt; item;
+    }
 </code></pre>
-<p>safe</p>
-<pre><code>template &lt;typename T&gt;
-void print_arr(std::span&lt;T&gt; arr){
-    for(const auto&amp; item : arr)
-        std::cout &lt;&lt; item;
-}
+<h3 id="4-wybieraj-wykonanie-w-compile-time-zamiast-run-time">4. Wybieraj wykonanie w compile time zamiast run time</h3>
+<p><strong>Powód</strong>
+Jeżeli jesteś w stanie zrobić coś w compile to tym zwiększysz performance kodu.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Funkcja zostanie wywołana dopiero w run time co go niepotrzebnie obciąży</p>
+<pre><code class="language-cpp">    constexpr float PI { 3.14159 };
+
+    float circle_area(const float r){
+        return PI * r * r;  
+    }
+
+    const area = circle_area(10.0);
+
+    std::cout &lt;&lt; area;
 </code></pre>
-<h3 id="4-compile-time-run-time">4. compile time &gt;&gt;&gt; run time</h3>
+<p>✅ teraz ta funkcja zostanie wywołana podczas kompilacji i run time jedyne co będzie musiał zrobić to wypisać pole</p>
+<pre><code class="language-cpp">    constexpr float PI { 3.14159 };
+
+    constexpr float circle_area(const float r){
+        return PI * r * r;  
+    }
+
+    constexpr area = circle_area(10.0);
+
+    std::cout &lt;&lt; area;
+</code></pre>
+<p><strong>Materiały</strong>
+https://www.learncpp.com/cpp-tutorial/constexpr-functions/</p>
 <h3 id="5-abstrakcja-nie-jest-za">5. abstrakcja nie jest zła</h3>
-<h3 id="6-kiss">6. KISS</h3>
-<p>Utrzymuj kod jak najprostszy, jeżeli zaawansowane struktury danych nie są niezbędne, to ich nie używaj</p>
+<h3 id="6-pisz-kod-jak-najprosciej-sie-da">6. Pisz kod Jak najprościej sie da</h3>
+<p><strong>Powód</strong>
+Utrzymuj kod jak najprostszy, jeżeli zaawansowane struktury danych nie są niezbędne, to ich nie używaj. </p>
+<p><strong>Przykład</strong></p>
 <pre><code class="language-cpp">std::string percentage_to_rounds(float percentage){
     std::string result{};
 
@@ -215,7 +250,7 @@ void print_arr(std::span&lt;T&gt; arr){
 </thead>
 <tbody>
 <tr>
-<td>std::views</td>
+<td><code>std::views</code></td>
 <td>🟨</td>
 <td>Może wprowadzać zamieszanie</td>
 </tr>
@@ -225,7 +260,7 @@ void print_arr(std::span&lt;T&gt; arr){
 <td>Nie jest type safe ale czasami może p</td>
 </tr>
 <tr>
-<td>constexpr</td>
+<td><code>constexpr</code></td>
 <td>✅</td>
 <td></td>
 </tr>
@@ -240,18 +275,57 @@ void print_arr(std::span&lt;T&gt; arr){
 <td></td>
 </tr>
 <tr>
-<td>new</td>
+<td><code>new</code></td>
 <td>❌</td>
 <td></td>
 </tr>
 <tr>
-<td>malloc</td>
+<td><code>malloc</code></td>
 <td>❌</td>
 <td></td>
 </tr>
+<tr>
+<td>C Array</td>
+<td>❌</td>
+<td>Mamy <code>std::array</code></td>
+</tr>
+<tr>
+<td>C Enum</td>
+<td>❌</td>
+<td>Mamy <code>enum class</code></td>
+</tr>
 </tbody>
 </table>
-<h3 id="nie-uzywamy">Nie używamy</h3>
+<h3 id="uzywaj-stl-etl">Używaj STL / ETL</h3>
+<p><strong>Powód</strong>
+Nie warto marnować czasu na pisanie własnych algorytmów i kontenerów</p>
+<p><strong>Przykład</strong>
+nazwa została funkcji celowo wypikana.</p>
+<p>❌ Algorytm działa poprawnie, ale nie widać na pierwszy rzut oka co robi, trzeba przekazać dwa argumenty, generalnie kongo. </p>
+<pre><code class="language-cpp">    float ...(int* tab, size_t len){
+        float sum = 0;
+
+        for(int i = 0; i &lt; len; i++)
+            sum += tab[i];
+
+        return sum / len;
+    }
+</code></pre>
+<p>🟨 Jest już type safe i ekspresywnie ze względu na użycie <code>std::span</code> i <code>std::accumulate</code> ale można lepiej...</p>
+<pre><code class="language-cpp">    float ...(std::span&lt;int&gt; tab){
+        return std::accumulate(tab.begin(), tab.end(), 0.0) / tab.size();
+    }
+</code></pre>
+<p>✅ Używanie wersji algorytmów z <code>::ranges</code> ukrywa użycie iteratorów więc mniej kodu + mniejsza szansa na błąd. </p>
+<pre><code class="language-cpp">    float ...(std::span&lt;int&gt; tab){
+        return std::ranges::accumulate(tab, 0.0) / tab.size();
+    }
+</code></pre>
+<h3 id="do-operacji-bitowych-zawsze-stdbyte">Do operacji bitowych zawsze std::byte</h3>
+<p>std::byte użyjemy jeżeli wczytujemy coś z pamięci które potem ma być jakoś zinterpretowane</p>
+<p>std::byte jest type safe i dobrze oddaje intencje.</p>
+<h3 id="error-handling">Error handling</h3>
+<p>Do tego będziemy używać <code>std::expected</code></p>
 <h2 id="styl-pisania-kodu">Styl Pisania Kodu</h2>
 <p>Punkty zawarte w tym rozdziale nie mają bezpośredniego wpływu na działanie samego kodu. Zawarte tutaj wymogi dotyczą się tylko wizualnej oprawy kodu </p>
 <h3 id="dugosc-funkcji">Długość funkcji</h3>
@@ -261,10 +335,18 @@ Jeżeli funkcja jest za długa powinieneś podzielić ją na mniejsze funkcje</p
 <h4 id="odstepy">Odstępy</h4>
 <pre><code>1 tabulacja - 4 spacje
 </code></pre>
+<h3 id="struktura-projektu">Struktura projektu</h3>
+<p>Używamy plików <code>.hpp</code> i <code>.cpp</code></p>
 <h4 id="nawiasy-wasate">Nawiasy wąsate</h4>
 <p><a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R">K&amp;R</a></p>
-<h3 id="nazewnictwo-zmiennych">Nazewnictwo zmiennych</h3>
-<p>nazwy zmiennych powinny przedewszystkim informować o tym co jest w środku, używaj deskryptywnych nazw  </p>
+<h3 id="komentarze">Komentarze</h3>
+<p>Kod powinien być pisany w taki sposób żeby komentarze były zbędne.</p>
+<h4 id="wyjatek">Wyjątek</h4>
+<p>Czasmi oczywiście nie jest to możliwe.
+Nie zawsze da się przekazać intencje używajac tylko kodu, szczególnie jeżeli jest to ekstremalnie zoptymalizowany fragment kodu lub implementacja jakiegoś interfejsu.</p>
+<h3 id="nazewnictwo">Nazewnictwo</h3>
+<p>Nazwy zmiennych powinny przedewszystkim informować o tym co jest w środku, używaj deskryptywnych nazw
+Nie bój się długich nazw, większość z nas ma takie coś jak TAB, więc to czy zmienna ma 5 znaków czy 15 nie robi różnicy bo i tak użyjemy autocomplete.</p>
 <table>
 <thead>
 <tr>
@@ -311,6 +393,8 @@ Jeżeli funkcja jest za długa powinieneś podzielić ją na mniejsze funkcje</p
 </tr>
 </tbody>
 </table>
+<h3 id="skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</h3>
+<p>Używamy tylko skrótów które znajdują się w słowniczku</p>
 <p>ps. nie używamy emoji jako nazwe zmiennej</p>
 <p>Przykład ❌</p>
 <pre><code class="language-cpp">    class Kernel;
@@ -462,5 +546,5 @@ z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifi
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-02-28 10:55:23.828700+00:00
+Build Date UTC : 2025-02-28 11:34:41.876166+00:00
 -->
