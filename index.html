@@ -152,6 +152,8 @@
                 <li class="third-level"><a href="#singleton">Singleton</a></li>
                 <li class="third-level"><a href="#factory">Factory</a></li>
                 <li class="third-level"><a href="#decorator">Decorator</a></li>
+            <li class="second-level"><a href="#plan-dziaania">Plan działania</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -521,9 +523,7 @@ co jest dobre, ale żeby jeszcze lepiej to zrobić możemy nazywać iterator zgo
 <h2 id="koncepty">Koncepty</h2>
 <p>Koncepty zostały wprowadzone w C++20 służą one do polepszenia jakości błędów generowanych przez templaty,
 z tego każda klasa/funkcja używająca szablonu mająca pewne ograniczenia powinna być ograniczona konceptem</p>
-<p><em>TODO</em>
-Dodać błędy bez i z konceptamicpp</p>
-<p>❌ Litania błędów będzie niesamowita...</p>
+<p>❌ Jednak informacja <code>'const char*' and 'const char*' to binary 'operator+'</code> nie jest taka czytelna</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
 T add(T a, T b) {
     return a + b;
@@ -531,11 +531,21 @@ T add(T a, T b) {
 
 add(&quot;PIT&quot;, &quot;BULL&quot;);
 </code></pre>
-<p>✅ Tutaj nawet ai poradzi sobie z rozszyfrowaniem błędów</p>
+<p>Błędy</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>error: invalid operands of types 'const char<em>' and 'const char</em>' to binary 'operator+'
+   5 |     return a + b;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>✅ Dostaniemy czytelny błąd i jeszcze IDE będzie podkreślało błąd</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
 concept Addable = requires(T a, T b) {
     { a + b } -&gt; same_as&lt;T&gt;;
 };
+
 
 template &lt;Addable T&gt;
 T add(T a, T b) {
@@ -544,6 +554,17 @@ T add(T a, T b) {
 
 add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
 </code></pre>
+<p>Błędy</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>note: candidate: 'template<class T>  requires  Addable<T> T add(T, T)'
+   | T add(T a, T b) {</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><strong>Materiały</strong>
+https://en.cppreference.com/w/cpp/language/constraints</p>
 <h2 id="formatowanie">Formatowanie</h2>
 <h3 id="forward-declaration">Forward Declaration</h3>
 <h3 id="nawiasy-wasate">Nawiasy wąsate</h3>
@@ -646,7 +667,9 @@ z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifi
 <h3 id="maszyna-stanu">Maszyna stanu</h3>
 <h3 id="singleton">Singleton</h3>
 <h3 id="factory">Factory</h3>
-<h3 id="decorator">Decorator</h3></div>
+<h3 id="decorator">Decorator</h3>
+<h2 id="plan-dziaania">Plan działania</h2>
+<p>1.</p></div>
         
         
     </div>
@@ -751,5 +774,5 @@ z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifi
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-02 01:42:38.304017+00:00
+Build Date UTC : 2025-03-02 10:28:11.898228+00:00
 -->
