@@ -87,6 +87,7 @@
             <li class="second-level"><a href="#filozofia-pisania-kodu">Filozofia pisania kodu</a></li>
                 
                 <li class="third-level"><a href="#wydajnosc">Wydajność</a></li>
+                <li class="third-level"><a href="#piszemy-kod-zgodny-ze-standardami-iso-wolnym-od-ub-i-zaleznym-od-kompilatora">Piszemy kod zgodny ze standardami ISO, wolnym od UB i zależnym od kompilatora</a></li>
                 <li class="third-level"><a href="#1-czytanie-kodu">1. Czytanie Kodu.</a></li>
                 <li class="third-level"><a href="#2-kod-ma-wyrazac-intencje">2. Kod ma wyrażać intencje.</a></li>
                 <li class="third-level"><a href="#3-type-safety-first">3. Type safety first</a></li>
@@ -101,10 +102,11 @@
                 <li class="third-level"><a href="#error-handling">Error handling</a></li>
             <li class="second-level"><a href="#funkcje">Funkcje</a></li>
                 
-                <li class="third-level"><a href="#_1"></a></li>
+            <li class="second-level"><a href="#wskazniki-do-pamieci-dynamicznej">Wskaźniki do pamięci dynamicznej</a></li>
+                
                 <li class="third-level"><a href="#asercje-w-funkcjach">Asercje w funkcjach</a></li>
                 <li class="third-level"><a href="#dugosc-funkcji">Długość funkcji</a></li>
-                <li class="third-level"><a href="#auto-return-type">[?] auto -&gt; return type</a></li>
+                <li class="third-level"><a href="#trailing-return-type">[?] Trailing Return Type</a></li>
             <li class="second-level"><a href="#zmienne">Zmienne</a></li>
                 
                 <li class="third-level"><a href="#uzywanie-auto">Używanie auto</a></li>
@@ -112,29 +114,44 @@
                 
                 <li class="third-level"><a href="#nazewnictwo-for-range-loop">Nazewnictwo for-range loop</a></li>
                 <li class="third-level"><a href="#skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</a></li>
+                <li class="third-level"><a href="#uzywanie-namespace">Używanie Namespace</a></li>
                 <li class="third-level"><a href="#nie-uzywamy-emoji-jako-nazw">Nie używamy emoji jako nazw</a></li>
                 <li class="third-level"><a href="#szablony">Szablony</a></li>
             <li class="second-level"><a href="#koncepty">Koncepty</a></li>
                 
             <li class="second-level"><a href="#formatowanie">Formatowanie</a></li>
                 
+                <li class="third-level"><a href="#forward-declaration">Forward Declaration</a></li>
                 <li class="third-level"><a href="#nawiasy-wasate">Nawiasy wąsate</a></li>
                 <li class="third-level"><a href="#odstepy">Odstępy</a></li>
                 <li class="third-level"><a href="#struktura-projektu">Struktura projektu</a></li>
             <li class="second-level"><a href="#komentarze">Komentarze</a></li>
                 
                 <li class="third-level"><a href="#klasy">Klasy</a></li>
+                <li class="third-level"><a href="#struct-vs-class">Struct vs Class</a></li>
+                <li class="third-level"><a href="#inicjaizaca-pol">Inicjaizaca pól</a></li>
+                <li class="third-level"><a href="#funkcja-inicjalizacyjna">Funkcja inicjalizacyjna</a></li>
+                <li class="third-level"><a href="#akcja-pena-enkapsulacja-i-akcesory">Akcja pełna enkapsulacja i akcesory</a></li>
                 <li class="third-level"><a href="#uzywanie-this-">[?] Używanie this-&gt;...</a></li>
                 <li class="third-level"><a href="#uzywaj-privateprotected-i-public">Używaj private,protected i public</a></li>
             <li class="second-level"><a href="#obsuga-gita">Obsługa gita</a></li>
                 
             <li class="second-level"><a href="#tworzenie-dokumentacji">Tworzenie dokumentacji</a></li>
                 
+            <li class="second-level"><a href="#inne">Inne</a></li>
+                
+                <li class="third-level"><a href="#uzywaj-pragma-once">Używaj #pragma once</a></li>
             <li class="second-level"><a href="#testowanie">Testowanie</a></li>
                 
                 <li class="third-level"><a href="#testy-jednostkowe">Testy jednostkowe</a></li>
                 <li class="third-level"><a href="#hardware-in-the-loop">Hardware in the loop</a></li>
                 <li class="third-level"><a href="#data-injection">Data injection</a></li>
+            <li class="second-level"><a href="#design-paterny">Design Paterny</a></li>
+                
+                <li class="third-level"><a href="#maszyna-stanu">Maszyna stanu</a></li>
+                <li class="third-level"><a href="#singleton">Singleton</a></li>
+                <li class="third-level"><a href="#factory">Factory</a></li>
+                <li class="third-level"><a href="#decorator">Decorator</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -176,6 +193,7 @@ To jest powód dla którego kod powinien być jak najprostszy, to znaczy, bez fi
 <h2 id="filozofia-pisania-kodu">Filozofia pisania kodu</h2>
 <h3 id="wydajnosc">Wydajność</h3>
 <p>Wydajność nie jest najważniejsza, ale nie jest pomijalna. Wydajność kodu bezpośrednio przekłada się m.in na zużycie energii przez satelitę. </p>
+<h3 id="piszemy-kod-zgodny-ze-standardami-iso-wolnym-od-ub-i-zaleznym-od-kompilatora">Piszemy kod zgodny ze standardami ISO, wolnym od UB i zależnym od kompilatora</h3>
 <h3 id="1-czytanie-kodu">1. Czytanie Kodu.</h3>
 <p>Kod będzie czytany więcej razy, niż będzie pisany, dlatego czytelność powinna być zawsze priorytetem. Dobrze napisany kod to taki, który można łatwo zrozumieć bez konieczności głębokiej analizy. Przejrzysty kod ułatwia jego utrzymanie, modyfikację oraz współpracę w zespole.</p>
 <h3 id="2-kod-ma-wyrazac-intencje">2. Kod ma wyrażać intencje.</h3>
@@ -370,7 +388,8 @@ nazwa została funkcji celowo wypikana.</p>
 <h3 id="error-handling">Error handling</h3>
 <p>Do tego będziemy używać <code>std::expected</code></p>
 <h2 id="funkcje">Funkcje</h2>
-<h3 id="_1"></h3>
+<h2 id="wskazniki-do-pamieci-dynamicznej">Wskaźniki do pamięci dynamicznej</h2>
+<p>Nie używaj gołych wskaźników, są bezpieczniejsze i lepsze rozwiązania prosto z C++ w <code>&lt;memory&gt;</code> mamy do dyspozycji <code>std::unique_ptr</code> <code>std::shared_ptr</code> <code>std::weak_ptr</code>  </p>
 <h3 id="asercje-w-funkcjach">Asercje w funkcjach</h3>
 <p><strong>Powód</strong>
 Każda Funkcja powinna zawierać asercję dla przypadków które nie powinny nigdy się wydarzyć.
@@ -406,8 +425,7 @@ przy pisaniu nowych funkcjonalności będa to dla nas pierwsze testy. W ten spos
 <h3 id="dugosc-funkcji">Długość funkcji</h3>
 <p>Funkcje nie powinny być dłuższe niż 40 linijek. Nie wymagamy od programistów pionowego monitora 29' do czytania kodu.
 Jeżeli funkcja jest za długa powinieneś podzielić ją na mniejsze funkcje</p>
-<h3 id="auto-return-type">[?] auto -&gt; return type</h3>
-<p>Tego nie jestem pewien, </p>
+<h3 id="trailing-return-type">[?] Trailing Return Type</h3>
 <pre><code class="language-cpp">auto get_raw_data() -&gt; void {
     ... 
 }
@@ -487,6 +505,7 @@ co jest dobre, ale żeby jeszcze lepiej to zrobić możemy nazywać iterator zgo
 </code></pre>
 <h3 id="skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</h3>
 <p>Używamy tylko skrótów które znajdują się w słowniczku</p>
+<h3 id="uzywanie-namespace">Używanie Namespace</h3>
 <h3 id="nie-uzywamy-emoji-jako-nazw">Nie używamy emoji jako nazw</h3>
 <p>Przykład ❌</p>
 <pre><code class="language-cpp">    class Kernel;
@@ -500,12 +519,33 @@ co jest dobre, ale żeby jeszcze lepiej to zrobić możemy nazywać iterator zgo
 </code></pre>
 <h3 id="szablony">Szablony</h3>
 <h2 id="koncepty">Koncepty</h2>
-<p>Koncepty zostały wprowadzone w C++20, służą one do polepszenia jakości błędów templejtów, z tego każda klasa/funkcja używająca szablonu mająca pewne ograniczenia powinna być ograniczona konceptem</p>
+<p>Koncepty zostały wprowadzone w C++20 służą one do polepszenia jakości błędów generowanych przez templaty,
+z tego każda klasa/funkcja używająca szablonu mająca pewne ograniczenia powinna być ograniczona konceptem</p>
 <p><em>TODO</em>
 Dodać błędy bez i z konceptamicpp</p>
-<p>❌</p>
-<p>✅</p>
+<p>❌ Litania błędów będzie niesamowita...</p>
+<pre><code class="language-cpp">template &lt;typename T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+
+add(&quot;PIT&quot;, &quot;BULL&quot;);
+</code></pre>
+<p>✅ Tutaj nawet ai poradzi sobie z rozszyfrowaniem błędów</p>
+<pre><code class="language-cpp">template &lt;typename T&gt;
+concept Addable = requires(T a, T b) {
+    { a + b } -&gt; same_as&lt;T&gt;;
+};
+
+template &lt;Addable T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+
+add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
+</code></pre>
 <h2 id="formatowanie">Formatowanie</h2>
+<h3 id="forward-declaration">Forward Declaration</h3>
 <h3 id="nawiasy-wasate">Nawiasy wąsate</h3>
 <p><a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R">K&amp;R</a></p>
 <h3 id="odstepy">Odstępy</h3>
@@ -519,6 +559,57 @@ Dodać błędy bez i z konceptamicpp</p>
 Czasmi oczywiście nie jest to możliwe.
 Nie zawsze da się przekazać intencje używajac tylko kodu, szczególnie jeżeli jest to ekstremalnie zoptymalizowany fragment kodu lub implementacja jakiegoś interfejsu.</p>
 <h3 id="klasy">Klasy</h3>
+<h3 id="struct-vs-class">Struct vs Class</h3>
+<p><strong>Powód</strong>
+Struct powinien służyć tylko wyłącznie jako DTO, jedyne metody jakie może mieć to akcesory do pól i proste metody obliczające swoje własności. Klasa z kolei jest opisem obiektu</p>
+<p><strong>Przykład</strong></p>
+<p>struct</p>
+<pre><code class="language-cpp">    struct Vec2 {
+        float x;
+        float y;
+
+        float length(){
+            return sqrt(x*x + y*y);
+        }
+    }
+</code></pre>
+<p>class </p>
+<pre><code class="language-cpp">    class BME280{
+        void read_raw_data();
+        void read_data(); 
+    }
+</code></pre>
+<h3 id="inicjaizaca-pol">Inicjaizaca pól</h3>
+<p>Każda Klasa każde pole które może powinna zaincjalizować używając <code>{}</code> unikniemy w ten sposób dużej ilości pisania kodu w konstruktorze, jeżeli konstruktor przyjmuje wartości to powinny zostać przypisane w liscie inicjalizacyjnej</p>
+<h3 id="funkcja-inicjalizacyjna">Funkcja inicjalizacyjna</h3>
+<p><strong>Powód</strong>
+Każda klasa powinna funkcje <code>init()</code> w której zostaną wykonane wszysktie operacje ciężkie i takie które mogą wyrzucić błąd.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Obsługa błędów jest prawie niemożliwa, po utworzeniu instancji odrazu będzie chciała się zaincjalizować</p>
+<pre><code class="language-cpp">class BME280 {
+
+    BME280(){
+        if (read_id() != 0x80){
+            std::cout &lt;&lt; &quot;BME280 connection failed&quot;;
+            while(1);
+        }
+    }
+}
+</code></pre>
+<p>✅ Można generycznie obsłużyć błąd, można powtórzyć inicjalizację przy błędzie.</p>
+<pre><code class="language-cpp">class BME280 {
+
+    BME280(){}
+
+    std::epxected&lt;bool,I2CErors&gt; init(){
+        if (read_id() != 0x80)
+            return I2CError::id_read;
+    }
+}
+</code></pre>
+<p><strong>Źródła</strong>
+https://google.github.io/styleguide/cppguide.html#Doing_Work_in_Constructors</p>
+<h3 id="akcja-pena-enkapsulacja-i-akcesory">Akcja pełna enkapsulacja i akcesory</h3>
 <h3 id="uzywanie-this-">[?] Używanie this-&gt;...</h3>
 <p><strong>Powód</strong>
     Jak przekazać informację o tym że zmienna jest polem klasy? rozwiązań jest kilka </p>
@@ -545,10 +636,17 @@ Brak dokumentacji czy jej niezgodność z rzeczywistością nie tylko powoduje s
 A jak dobrze wiadomo jedyne osoby które mogą pisać dokumetancje to są ludzie którzy stworzyli pewny fragment kodu, 
 z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifikować tooling, sposób i styl pisania dokumentacji.</p>
 <p><a href="https://www.doxygen.nl/">Doxygen</a></p>
+<h2 id="inne">Inne</h2>
+<h3 id="uzywaj-pragma-once">Używaj #pragma once</h3>
 <h2 id="testowanie">Testowanie</h2>
 <h3 id="testy-jednostkowe">Testy jednostkowe</h3>
 <h3 id="hardware-in-the-loop">Hardware in the loop</h3>
-<h3 id="data-injection">Data injection</h3></div>
+<h3 id="data-injection">Data injection</h3>
+<h2 id="design-paterny">Design Paterny</h2>
+<h3 id="maszyna-stanu">Maszyna stanu</h3>
+<h3 id="singleton">Singleton</h3>
+<h3 id="factory">Factory</h3>
+<h3 id="decorator">Decorator</h3></div>
         
         
     </div>
@@ -653,5 +751,5 @@ z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifi
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-02 01:09:20.117083+00:00
+Build Date UTC : 2025-03-02 01:42:38.304017+00:00
 -->
