@@ -140,7 +140,7 @@
                 
             <li class="second-level"><a href="#inne">Inne</a></li>
                 
-                <li class="third-level"><a href="#uzywaj-pragma-once">Używaj #pragma once</a></li>
+                <li class="third-level"><a href="#pragma-once">#pragma once</a></li>
             <li class="second-level"><a href="#testowanie">Testowanie</a></li>
                 
                 <li class="third-level"><a href="#testy-jednostkowe">Testy jednostkowe</a></li>
@@ -559,7 +559,7 @@ add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
 <blockquote>
 <blockquote>
 <p>note: candidate: 'template<class T>  requires  Addable<T> T add(T, T)'
-   | T add(T a, T b) {</p>
+   | T add(T a, T b) </p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -658,7 +658,33 @@ A jak dobrze wiadomo jedyne osoby które mogą pisać dokumetancje to są ludzie
 z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifikować tooling, sposób i styl pisania dokumentacji.</p>
 <p><a href="https://www.doxygen.nl/">Doxygen</a></p>
 <h2 id="inne">Inne</h2>
-<h3 id="uzywaj-pragma-once">Używaj #pragma once</h3>
+<h3 id="pragma-once">#pragma once</h3>
+<p><strong>Powód</strong>
+Każdy plik <code>.hpp</code> MUSI mieć coś żeby przeciwdziałać wielokrotnym dołączeniom, w C++ są 2 sposoby na zrobienie tego
+używając <code>#define</code> guarda i <code>#pragma once</code>, ten pierwszy jest działający niezależnie od platformy, ale ma kilka problemów:</p>
+<ul>
+<li>Dużo pisania</li>
+<li>Możliwa podwójna definicja makra</li>
+<li>Żeby gwarantować unikalność trzeba by używać pełnej ścieżki do pliku</li>
+<li>Trzeba ręcznie uwzględnić zmiane makra po zmianie nazwy pliku </li>
+</ul>
+<p><code>#pragma once</code> to wszystko rozwiązuje,
+jedyne problemy z <code>#pragma once</code> to że nie jest oficjalną częścią standardu więc nie musi działać wszędzie, ale u nas akurat działa :3</p>
+<p><strong>Przykład</strong></p>
+<p>❌</p>
+<pre><code class="language-cpp">    #ifndef DRIVERS_UART_LL_HPP_
+    #define DRIVERS_UART_LL_HPP_
+
+    ... 
+
+    #endif // FILE_HPP
+</code></pre>
+<p>✅</p>
+<pre><code class="language-cpp">    #pragma once
+
+    ...
+
+</code></pre>
 <h2 id="testowanie">Testowanie</h2>
 <h3 id="testy-jednostkowe">Testy jednostkowe</h3>
 <h3 id="hardware-in-the-loop">Hardware in the loop</h3>
@@ -774,5 +800,5 @@ z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifi
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-02 10:28:11.898228+00:00
+Build Date UTC : 2025-03-02 10:44:18.126485+00:00
 -->
