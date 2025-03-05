@@ -117,6 +117,7 @@
                 <li class="third-level"><a href="#int-arr-size_t-len-vs">int* arr + size_t len vs</a></li>
             <li class="second-level"><a href="#zmienne">Zmienne</a></li>
                 
+                <li class="third-level"><a href="#inicjalizacja-zmiennych">Inicjalizacja zmiennych</a></li>
                 <li class="third-level"><a href="#uzywanie-auto">Używanie auto</a></li>
             <li class="second-level"><a href="#nazewnictwo">Nazewnictwo</a></li>
                 
@@ -126,9 +127,9 @@
                 <li class="third-level"><a href="#skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</a></li>
                 <li class="third-level"><a href="#uzywanie-namespace">Używanie Namespace</a></li>
                 <li class="third-level"><a href="#nie-uzywamy-emoji-jako-nazw">Nie używamy emoji jako nazw</a></li>
-                <li class="third-level"><a href="#szablony">Szablony</a></li>
-            <li class="second-level"><a href="#koncepty">Koncepty</a></li>
+            <li class="second-level"><a href="#szablony">Szablony</a></li>
                 
+                <li class="third-level"><a href="#koncepty">Koncepty</a></li>
             <li class="second-level"><a href="#enumy">Enumy</a></li>
                 
                 <li class="third-level"><a href="#nie-korzystamy-z-enum">Nie korzystamy z enum</a></li>
@@ -141,6 +142,7 @@
                 <li class="third-level"><a href="#struktura-projektu">Struktura projektu</a></li>
             <li class="second-level"><a href="#komentarze">Komentarze</a></li>
                 
+                <li class="third-level"><a href="#link-do-manuala">Link do Manuala</a></li>
                 <li class="third-level"><a href="#klasy">Klasy</a></li>
                 <li class="third-level"><a href="#dziedziczenie">Dziedziczenie</a></li>
                 <li class="third-level"><a href="#struct-vs-class">Struct vs Class</a></li>
@@ -153,6 +155,7 @@
                 
             <li class="second-level"><a href="#tworzenie-dokumentacji">Tworzenie dokumentacji</a></li>
                 
+                <li class="third-level"><a href="#brief-funkcji">Brief funkcji</a></li>
             <li class="second-level"><a href="#inne">Inne</a></li>
                 
                 <li class="third-level"><a href="#pragma-once">#pragma once</a></li>
@@ -507,10 +510,27 @@ struct array {
 <a href="https://en.cppreference.com/w/cpp/container/array">cpp reference</a></p>
 <h3 id="int-arr-size_t-len-vs">int* arr + size_t len vs</h3>
 <h2 id="zmienne">Zmienne</h2>
+<h3 id="inicjalizacja-zmiennych">Inicjalizacja zmiennych</h3>
+<p><strong>Powód</strong>
+Zmienne będziemy inicjalizować używając <code>{}</code> nie <code>=</code> może się to wydawać dziwne i nie intuicyjne ale w ten sposób kompilator będzie mógł mieć wielki problem jeżeli chcemy zaincjalizować zmienne czymś co będzie stratne.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Trzeba się modlić o error</p>
+<pre><code class="language-cpp">    int y = 7.9;
+</code></pre>
+<p>✅ Kompilator wyrzuci błąd że chcemy niejawnie przekonwertować <code>double</code> na <code>int</code></p>
+<pre><code class="language-cpp">    int x {7.9};
+</code></pre>
+<p><strong>Źródło</strong>
+<a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#es23-prefer-the--initializer-syntax">ISO C++</a></p>
 <h3 id="uzywanie-auto">Używanie auto</h3>
-<p>Auto może w dużym stopniu uprościć kod, ale w pewnych przypadkach jest to po prostu nie wskazane.</p>
-<p>❌ Kiedy kompilator będzie musiał z powietrza dedukować typ </p>
+<p><strong>Powód</strong>
+Auto może w dużym stopniu uprościć kod, ale w pewnych przypadkach jest to po prostu nie wskazane.</p>
+<p><strong>Przykład</strong>
+❌ Kiedy kompilator będzie musiał z powietrza dedukować typ </p>
 <pre><code class="language-cpp">    auto num = 1;
+</code></pre>
+<p>❌ Bez sprawdzenia typu <code>divide</code> nie jesteśmy w stanie określić jaki będzie miało to typ</p>
+<pre><code class="language-cpp">    auto = divide(1,2);
 </code></pre>
 <p>✅ auto w for-range loop 
   <code>cpp
@@ -582,17 +602,17 @@ Nie bój się długich nazw, większość z nas ma takie coś jak TAB, więc to 
 <p>Nazwa enuma zawsze powinna być w liczbie pojedyńczej.</p>
 <p>❌ Nie Color<strong>s</strong>, tylko Color</p>
 <pre><code class="language-cpp">enum class Colors {
-    Red,
-    Green,
-    Blue,
+    red,
+    green,
+    blue,
 } ```
 
 ✅ 
 ```cpp 
 enum class Color {
-    Red   = 0,
-    Green = 1,
-    Blue  = 2,
+    red   = 0,
+    green = 1,
+    blue  = 2,
 }
 </code></pre>
 <h3 id="typy-do-reprezentacji-jednostek-si">[?] Typy do reprezentacji jednostek SI</h3>
@@ -629,8 +649,8 @@ co jest dobre, ale żeby jeszcze lepiej to zrobić możemy nazywać iterator zgo
 
     Kernel kernel;
 </code></pre>
-<h3 id="szablony">Szablony</h3>
-<h2 id="koncepty">Koncepty</h2>
+<h2 id="szablony">Szablony</h2>
+<h3 id="koncepty">Koncepty</h3>
 <p>Koncepty zostały wprowadzone w C++20, jest to niejako typ parametru szablonu, służą one do polepszenia jakości błędów generowanych przez templaty, z tego każda klasa/funkcja używająca szablonu mająca pewne ograniczenia powinna być ograniczona konceptem</p>
 <p>❌ Jednak informacja <code>'const char*' and 'const char*' to binary 'operator+'</code> nie jest taka czytelna</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
@@ -676,15 +696,34 @@ add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
 https://en.cppreference.com/w/cpp/language/constraints</p>
 <h2 id="enumy">Enumy</h2>
 <h3 id="nie-korzystamy-z-enum">Nie korzystamy z enum</h3>
-<p>Po to bozia C++ wymyśliła <code>enum class</code> żeby z tego korzystać. `enum class</p>
+<p><strong>Powód</strong>
+Po to bozia C++ wymyśliła <code>enum class</code> żeby z tego korzystać. <code>enum</code> de facto tworzy zmienne globalne, <code>enum class</code> robi to podobnie tylko że robi to w przestrzeni nazw i klucze <code>enum class</code> są silnie typowane, to znaczy że trzeba specjalnie to zrzutować na jakiś typ liczbowy </p>
+<p><strong>Przykład</strong></p>
+<p><em>TODO</em> 
+- Przykłady</p>
+<p>❌</p>
+<pre><code class="language-cpp"></code></pre>
+<p>✅ </p>
+<pre><code class="language-cpp"></code></pre>
 <p><strong>Materiały</strong>
 https://agrawalsuneet.github.io/blogs/enum-vs-enum-class-in-c++/</p>
 <h3 id="wartosci-enuma">Wartości enuma</h3>
 <p><strong>Powód</strong>
-Wartości enuma powinny informować o jego zastosowaniu, to znaczy że jeżeli enum będzie używany tylko jako typ</p>
-<p>❌</p>
-<pre><code class="language-cpp">    enum class Color{
-        Re
+Wartości enuma powinny informować o jego zastosowaniu, to znaczy że jeżeli enum będzie używany tylko jako typ i wartość nie będzie nas interesować to wtedy nie musimy pisać wartości bo jeszcze sie pomylimy i buga będziemy tydzień szukać.</p>
+<p>Jeżeli interesuje nas wartość to zapisujemy ją we wszystkich kluczach enuma, najczęściej będziemy używać tego do konfiguracji czegoś więc zapis w hexie będzie najodpowiedniejszy  </p>
+<p><strong>Przkyłady</strong></p>
+<p>✅ Jest okej, raczej nie będzie interesować nas wartość tego. </p>
+<pre><code class="language-cpp">    enum class Gender{
+        male,
+        female,
+        🚀, 
+    }
+</code></pre>
+<p>✅ Jest super, dokumentacja korzysta z liczb zapisanych w hexie, użyjemy tego elegancko</p>
+<pre><code class="language-cpp">    enum class BME280Mode{
+        i2c          = 0x04,
+        spi          = 0x10,
+        two_wire_spi = 0x20,
     }
 </code></pre>
 <h2 id="formatowanie">Formatowanie</h2>
@@ -701,6 +740,17 @@ Wartości enuma powinny informować o jego zastosowaniu, to znaczy że jeżeli e
 <p><strong>Wyjątek</strong>
 Czasmi oczywiście nie jest to możliwe.
 Nie zawsze da się przekazać intencje używajac tylko kodu, szczególnie jeżeli jest to ekstremalnie zoptymalizowany fragment kodu lub implementacja jakiegoś interfejsu.</p>
+<h3 id="link-do-manuala">Link do Manuala</h3>
+<p><strong>Powód</strong>
+Tworząc implementację drivera pewnego hardwaru będziemy chcieli w komentarzu zostawić link do datasheeta z którego korzystaliśmy, ma to na celu wyeliminowania problemów gdzie w komentarzu/dokumentacji jest strona z datasheeta ale nie pokrywa się z naszym datasheetem. Również zmniejsza czas na szukanie datasheetów. </p>
+<p>✅ </p>
+<pre><code class="language-cpp">// Datasheet
+// https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf
+
+class BME280{
+    ... 
+};
+</code></pre>
 <h3 id="klasy">Klasy</h3>
 <h3 id="dziedziczenie">Dziedziczenie</h3>
 <p>Dziedziczenie OK, Dziedziczenie wielokrotne nie ok, mega rozpierdol itp.</p>
@@ -786,6 +836,7 @@ Brak dokumentacji czy jej niezgodność z rzeczywistością nie tylko powoduje s
 A jak dobrze wiadomo jedyne osoby które mogą pisać dokumetancje to są ludzie którzy stworzyli pewny fragment kodu, 
 z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifikować tooling, sposób i styl pisania dokumentacji.</p>
 <p><a href="https://www.doxygen.nl/">Doxygen</a></p>
+<h3 id="brief-funkcji">Brief funkcji</h3>
 <h2 id="inne">Inne</h2>
 <h3 id="pragma-once">#pragma once</h3>
 <p><strong>Powód</strong>
@@ -936,5 +987,5 @@ Jedyne problemy z <code>#pragma once</code> to że nie jest oficjalną części�
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-04 23:30:10.575829+00:00
+Build Date UTC : 2025-03-05 00:00:30.747708+00:00
 -->
