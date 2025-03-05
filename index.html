@@ -145,7 +145,7 @@
                 <li class="third-level"><a href="#link-do-manuala">Link do Manuala</a></li>
                 <li class="third-level"><a href="#klasy">Klasy</a></li>
                 <li class="third-level"><a href="#dziedziczenie">Dziedziczenie</a></li>
-                <li class="third-level"><a href="#struct-vs-class">Struct vs Class</a></li>
+                <li class="third-level"><a href="#struct-vs-class">[?] Struct vs Class</a></li>
                 <li class="third-level"><a href="#inicjaizaca-pol">Inicjaizaca pól</a></li>
                 <li class="third-level"><a href="#funkcja-inicjalizacyjna">Funkcja inicjalizacyjna</a></li>
                 <li class="third-level"><a href="#akcja-pena-enkapsulacja-i-akcesory">Akcja pełna enkapsulacja i akcesory</a></li>
@@ -179,11 +179,13 @@
         <div class="col-md-9" role="main">
 
 <h1 id="wielka-ksiega-przewinien-programistow-osadzonych">Wielka księga przewinień programistów osadzonych</h1>
-<p>Jakieś tam code guidy które podobno działają
-- <a href="http://pixelscommander.com/wp-content/uploads/2014/12/P10.pdf">NASA</a>
-- <a href="https://google.github.io/styleguide/cppguide.html">Google</a>
-- <a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">ISO C++</a>
-- <a href="https://sat-polsl.gitlab.io/wiki/sat-firmware-launcher-wiki/#/Coding-guidelines">SAT</a></p>
+<p>Jakieś tam code guidy które podobno działają</p>
+<ul>
+<li><a href="http://pixelscommander.com/wp-content/uploads/2014/12/P10.pdf">NASA</a></li>
+<li><a href="https://google.github.io/styleguide/cppguide.html">Google</a></li>
+<li><a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">ISO C++</a></li>
+<li><a href="https://sat-polsl.gitlab.io/wiki/sat-firmware-launcher-wiki/#/Coding-guidelines">SAT</a></li>
+</ul>
 <h2 id="wstep">Wstęp</h2>
 <p>Jak wiadomo, dokumentacji nikt nie będzie czytał dokładnie, słowo w słowo.
 Więc proszę się nie zdziwić jak pojawią się tutaj jajka wielkanocno świąteczne, a forma nie będzie w pełni oficjalna.</p>
@@ -254,6 +256,8 @@ Parametry width i height mówią, do czego służą.</p>
 <h3 id="4-wybieraj-wykonanie-w-compile-time-zamiast-run-time">4. Wybieraj wykonanie w compile time zamiast run time</h3>
 <p><strong>Powód</strong>
 Jeżeli jesteś w stanie zrobić coś w compile to tym zwiększysz performance kodu.</p>
+<p><em>TODO</em>
+opisać <code>consteval</code></p>
 <p><strong>Przykład</strong></p>
 <p>❌ Funkcja zostanie wywołana dopiero w run time co go niepotrzebnie obciąży</p>
 <pre><code class="language-cpp">    constexpr float PI { 3.14159 };
@@ -277,8 +281,8 @@ Jeżeli jesteś w stanie zrobić coś w compile to tym zwiększysz performance k
 
     std::cout &lt;&lt; area;
 </code></pre>
-<p><strong>Materiały</strong>
-https://www.learncpp.com/cpp-tutorial/constexpr-functions/</p>
+<p><strong>Materiały</strong></p>
+<p>https://www.learncpp.com/cpp-tutorial/constexpr-functions/</p>
 <h3 id="5-abstrakcja-nie-jest-za">5. abstrakcja nie jest zła</h3>
 <p>Tworzenie abstrakcji na </p>
 <h3 id="6-pisz-kod-jak-najprosciej-sie-da">6. Pisz kod Jak najprościej sie da</h3>
@@ -660,14 +664,9 @@ T add(T a, T b) {
 
 add(&quot;PIT&quot;, &quot;BULL&quot;);
 </code></pre>
-<p>Błędy</p>
+<p><strong>Błędy</strong></p>
 <blockquote>
-<blockquote>
-<blockquote>
-<p>error: invalid operands of types 'const char<em>' and 'const char</em>' to binary 'operator+'
-   5 |     return a + b;</p>
-</blockquote>
-</blockquote>
+<p>error: invalid operands of types 'const char<em>' and 'const char</em>' to binary 'operator+' </p>
 </blockquote>
 <p>✅ Dostaniemy czytelny błąd i jeszcze IDE będzie podkreślało błąd</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
@@ -683,17 +682,12 @@ T add(T a, T b) {
 
 add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
 </code></pre>
-<p>Błędy</p>
+<p><strong>Błędy</strong></p>
 <blockquote>
-<blockquote>
-<blockquote>
-<p>note: candidate: 'template<class T>  requires  Addable<T> T add(T, T)'
-   | T add(T a, T b) </p>
+<p>note: candidate: 'template<class T>  requires  Addable<T> T add(T, T)'</p>
 </blockquote>
-</blockquote>
-</blockquote>
-<p><strong>Materiały</strong>
-https://en.cppreference.com/w/cpp/language/constraints</p>
+<p><strong>Materiały</strong></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/constraints">Cpp reference</a></p>
 <h2 id="enumy">Enumy</h2>
 <h3 id="nie-korzystamy-z-enum">Nie korzystamy z enum</h3>
 <p><strong>Powód</strong>
@@ -705,8 +699,8 @@ Po to bozia C++ wymyśliła <code>enum class</code> żeby z tego korzystać. <co
 <pre><code class="language-cpp"></code></pre>
 <p>✅ </p>
 <pre><code class="language-cpp"></code></pre>
-<p><strong>Materiały</strong>
-https://agrawalsuneet.github.io/blogs/enum-vs-enum-class-in-c++/</p>
+<p><strong>Materiały</strong></p>
+<p>https://agrawalsuneet.github.io/blogs/enum-vs-enum-class-in-c++/</p>
 <h3 id="wartosci-enuma">Wartości enuma</h3>
 <p><strong>Powód</strong>
 Wartości enuma powinny informować o jego zastosowaniu, to znaczy że jeżeli enum będzie używany tylko jako typ i wartość nie będzie nas interesować to wtedy nie musimy pisać wartości bo jeszcze sie pomylimy i buga będziemy tydzień szukać.</p>
@@ -743,7 +737,7 @@ Nie zawsze da się przekazać intencje używajac tylko kodu, szczególnie jeżel
 <h3 id="link-do-manuala">Link do Manuala</h3>
 <p><strong>Powód</strong>
 Tworząc implementację drivera pewnego hardwaru będziemy chcieli w komentarzu zostawić link do datasheeta z którego korzystaliśmy, ma to na celu wyeliminowania problemów gdzie w komentarzu/dokumentacji jest strona z datasheeta ale nie pokrywa się z naszym datasheetem. Również zmniejsza czas na szukanie datasheetów. </p>
-<p>✅ </p>
+<p>✅ Elegancko jest link do ukochanego BME280</p>
 <pre><code class="language-cpp">// Datasheet
 // https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf
 
@@ -754,9 +748,9 @@ class BME280{
 <h3 id="klasy">Klasy</h3>
 <h3 id="dziedziczenie">Dziedziczenie</h3>
 <p>Dziedziczenie OK, Dziedziczenie wielokrotne nie ok, mega rozpierdol itp.</p>
-<h3 id="struct-vs-class">Struct vs Class</h3>
+<h3 id="struct-vs-class">[?] Struct vs Class</h3>
 <p><strong>Powód</strong>
-Struct powinien służyć tylko wyłącznie jako DTO, jedyne metody jakie może mieć to akcesory do pól i proste metody obliczające swoje własności. Klasa z kolei jest opisem obiektu</p>
+Struct powinien służyć tylko wyłącznie jako DTO, jedyne metody jakie może mieć to akcesory do pól i proste metody obliczające swoje własności. Klasa z kolei jest opisem obiektu, ma to służyć rozróżnieniu z czym mamy doczynienia.</p>
 <p><strong>Przykład</strong></p>
 <p>struct</p>
 <pre><code class="language-cpp">    struct Vec2 {
@@ -987,5 +981,5 @@ Jedyne problemy z <code>#pragma once</code> to że nie jest oficjalną części�
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-05 00:00:30.747708+00:00
+Build Date UTC : 2025-03-05 00:07:47.192982+00:00
 -->
