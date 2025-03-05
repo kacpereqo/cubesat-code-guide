@@ -464,10 +464,24 @@ Jeżeli funkcja jest za długa powinieneś podzielić ją na mniejsze funkcje. <
 </code></pre>
 <h3 id="sprawdzanie-poprawnosci-danych">Sprawdzanie poprawności danych</h3>
 <p><strong>Powód</strong>
-Jeżeli są jakieś wymagania od danych wejściowych funkcji, to <strong>nie</strong> możesz założyć że zostaną one przekazane prawidłowe. Więc na początku każdej funkcji muszą zostać sprawdzone argumenty pod kątem poprawności.</p>
+Jeżeli są jakieś wymagania od danych wejściowych funkcji, to <strong>nie</strong> możesz założyć że zostaną one przekazane prawidłowe.
+ Więc na początku każdej funkcji muszą zostać sprawdzone argumenty pod kątem poprawności.</p>
 <p><strong>Przykład</strong> </p>
-<p>✅</p>
-<pre><code class="language-cpp">
+<p>❌ </p>
+<pre><code class="language-cpp">    float divide(float a, float b) {
+        return a / b;
+    }
+</code></pre>
+<p>✅ Można generycznie obsłużyć błąd; </p>
+<pre><code class="language-cpp">    enum class DivisionError{
+        division_by_zero,
+    }
+
+    std::expected&lt;float, DivisionError&gt; divide(float a, float b) {
+        if (b == 0) return DivisionError::division_by_zero;
+
+        return a / b;
+    }
 </code></pre>
 <h3 id="const-argumenty">const argumenty</h3>
 <h3 id="const-metody">const metody</h3>
@@ -795,9 +809,11 @@ class BME280 {
 
     BME280(){}
 
-    std::epxected&lt;bool,I2CEror&gt; init(){
+    //[?] czy nie robić tego w ten sposób bo wartość nas nie interesuje i tak I2CEror init()
+    std::expected&lt;bool,I2CEror&gt; init(){
         if (read_id() != 0x80)
             return I2CError::id_read;
+        return true;
     }
 }
 </code></pre>
@@ -981,5 +997,5 @@ Jedyne problemy z <code>#pragma once</code> to że nie jest oficjalną części�
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-03-05 00:07:47.192982+00:00
+Build Date UTC : 2025-03-05 08:44:46.639763+00:00
 -->
