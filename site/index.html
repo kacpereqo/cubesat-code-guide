@@ -1,120 +1,951 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    
+    <title>Home - CubeSat code guide</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="css/base.min.css" rel="stylesheet">
+    <link href="css/cinder.min.css" rel="stylesheet">
+
+    
         
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>CubeSat code guide</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fontawesome.min.css" rel="stylesheet">
-        <link href="css/brands.min.css" rel="stylesheet">
-        <link href="css/solid.min.css" rel="stylesheet">
-        <link href="css/v4-font-face.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+    
 
-    <body class="homepage">
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href=".">CubeSat code guide</a>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
 
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
+    
 
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+     
+</head>
+
+<body class="homepage" >
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href=".">CubeSat code guide</a>
+            
         </div>
 
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#wielka-ksiega-przewinien-programistow-osadzonych">Wielka księga przewinień programistów osadzonych</a></li>
+            <li class="second-level"><a href="#wstep">Wstęp</a></li>
+                
+            <li class="second-level"><a href="#zaozenia">Założenia</a></li>
+                
+                <li class="third-level"><a href="#todo">todo</a></li>
+            <li class="second-level"><a href="#setup-projektu">Setup Projektu</a></li>
+                
+                <li class="third-level"><a href="#flagi-kompilatora">Flagi kompilatora</a></li>
+                <li class="third-level"><a href="#todo_1">todo</a></li>
+            <li class="second-level"><a href="#filozofia-pisania-kodu">Filozofia pisania kodu</a></li>
+                
+                <li class="third-level"><a href="#wydajnosc">Wydajność</a></li>
+                <li class="third-level"><a href="#piszemy-kod-zgodny-ze-standardami-iso-wolnym-od-ub-i-zaleznym-od-kompilatora">Piszemy kod zgodny ze standardami ISO, wolnym od UB i zależnym od kompilatora</a></li>
+                <li class="third-level"><a href="#1-czytanie-kodu">1. Czytanie Kodu.</a></li>
+                <li class="third-level"><a href="#2-kod-ma-wyrazac-intencje">2. Kod ma wyrażać intencje.</a></li>
+                <li class="third-level"><a href="#3-type-safety-first">3. Type safety first</a></li>
+                <li class="third-level"><a href="#4-wybieraj-wykonanie-w-compile-time-zamiast-run-time">4. Wybieraj wykonanie w compile time zamiast run time</a></li>
+                <li class="third-level"><a href="#5-abstrakcja-nie-jest-za">5. abstrakcja nie jest zła</a></li>
+                <li class="third-level"><a href="#6-pisz-kod-jak-najprosciej-sie-da">6. Pisz kod Jak najprościej sie da</a></li>
+            <li class="second-level"><a href="#pisanie-kodu">Pisanie Kodu</a></li>
+                
+                <li class="third-level"><a href="#uzywaj-stl-etl">Używaj STL / ETL</a></li>
+                <li class="third-level"><a href="#do-operacji-bitowych-zawsze-stdbyte">Do operacji bitowych zawsze std::byte</a></li>
+            <li class="second-level"><a href="#funkcje">Funkcje</a></li>
+                
+            <li class="second-level"><a href="#wskazniki-do-pamieci-dynamicznej">Wskaźniki do pamięci dynamicznej</a></li>
+                
+                <li class="third-level"><a href="#asercje-w-funkcjach">Asercje w funkcjach</a></li>
+                <li class="third-level"><a href="#error-handling">Error handling</a></li>
+                <li class="third-level"><a href="#dugosc-funkcji">Długość funkcji</a></li>
+                <li class="third-level"><a href="#jedna-funkcja-jedno-zadanie">Jedna funkcja = Jedno zadanie</a></li>
+                <li class="third-level"><a href="#trailing-return-type">[?] Trailing Return Type</a></li>
+                <li class="third-level"><a href="#sprawdzanie-poprawnosci-danych">Sprawdzanie poprawności danych</a></li>
+                <li class="third-level"><a href="#const-argumenty">const argumenty</a></li>
+                <li class="third-level"><a href="#const-metody">const metody</a></li>
+                <li class="third-level"><a href="#noexcept">[?] noexcept</a></li>
+            <li class="second-level"><a href="#struktury-danych">Struktury danych</a></li>
+                
+                <li class="third-level"><a href="#c-array-vs-stdarray">C-array vs std::array</a></li>
+                <li class="third-level"><a href="#int-arr-size_t-len-vs">int* arr + size_t len vs</a></li>
+            <li class="second-level"><a href="#zmienne">Zmienne</a></li>
+                
+                <li class="third-level"><a href="#inicjalizacja-zmiennych">Inicjalizacja zmiennych</a></li>
+                <li class="third-level"><a href="#uzywanie-auto">Używanie auto</a></li>
+            <li class="second-level"><a href="#nazewnictwo">Nazewnictwo</a></li>
+                
+                <li class="third-level"><a href="#nazwa-enuma-w-liczbie-pojedynczej">nazwa Enuma w liczbie pojedyńczej</a></li>
+                <li class="third-level"><a href="#typy-do-reprezentacji-jednostek-si">[?] Typy do reprezentacji jednostek SI</a></li>
+                <li class="third-level"><a href="#nazewnictwo-for-range-loop">Nazewnictwo for-range loop</a></li>
+                <li class="third-level"><a href="#skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</a></li>
+                <li class="third-level"><a href="#uzywanie-namespace">Używanie Namespace</a></li>
+                <li class="third-level"><a href="#nie-uzywamy-emoji-jako-nazw">Nie używamy emoji jako nazw</a></li>
+            <li class="second-level"><a href="#szablony">Szablony</a></li>
+                
+                <li class="third-level"><a href="#koncepty">Koncepty</a></li>
+            <li class="second-level"><a href="#enumy">Enumy</a></li>
+                
+                <li class="third-level"><a href="#nie-korzystamy-z-enum">Nie korzystamy z enum</a></li>
+                <li class="third-level"><a href="#wartosci-enuma">Wartości enuma</a></li>
+            <li class="second-level"><a href="#formatowanie">Formatowanie</a></li>
+                
+                <li class="third-level"><a href="#forward-declaration">Forward Declaration</a></li>
+                <li class="third-level"><a href="#nawiasy-wasate">Nawiasy wąsate</a></li>
+                <li class="third-level"><a href="#odstepy">Odstępy</a></li>
+                <li class="third-level"><a href="#struktura-projektu">Struktura projektu</a></li>
+            <li class="second-level"><a href="#komentarze">Komentarze</a></li>
+                
+                <li class="third-level"><a href="#link-do-manuala">Link do Manuala</a></li>
+                <li class="third-level"><a href="#klasy">Klasy</a></li>
+                <li class="third-level"><a href="#dziedziczenie">Dziedziczenie</a></li>
+                <li class="third-level"><a href="#struct-vs-class">[?] Struct vs Class</a></li>
+                <li class="third-level"><a href="#inicjaizaca-pol">Inicjaizaca pól</a></li>
+                <li class="third-level"><a href="#funkcja-inicjalizacyjna">Funkcja inicjalizacyjna</a></li>
+                <li class="third-level"><a href="#akcja-pena-enkapsulacja-i-akcesory">Akcja pełna enkapsulacja i akcesory</a></li>
+                <li class="third-level"><a href="#uzywanie-this-">[?] Używanie this-&gt;...</a></li>
+                <li class="third-level"><a href="#uzywaj-privateprotected-i-public">Używaj private,protected i public</a></li>
+            <li class="second-level"><a href="#obsuga-gita">Obsługa gita</a></li>
+                
+            <li class="second-level"><a href="#tworzenie-dokumentacji">Tworzenie dokumentacji</a></li>
+                
+                <li class="third-level"><a href="#brief-funkcji">Brief funkcji</a></li>
+            <li class="second-level"><a href="#inne">Inne</a></li>
+                
+                <li class="third-level"><a href="#pragma-once">#pragma once</a></li>
+            <li class="second-level"><a href="#testowanie">Testowanie</a></li>
+                
+                <li class="third-level"><a href="#testy-jednostkowe">Testy jednostkowe</a></li>
+                <li class="third-level"><a href="#hardware-in-the-loop">Hardware in the loop</a></li>
+                <li class="third-level"><a href="#data-injection">Data injection</a></li>
+            <li class="second-level"><a href="#design-paterny">Design Paterny</a></li>
+                
+                <li class="third-level"><a href="#maszyna-stanu">Maszyna stanu</a></li>
+                <li class="third-level"><a href="#singleton">Singleton</a></li>
+                <li class="third-level"><a href="#factory">Factory</a></li>
+                <li class="third-level"><a href="#decorator">Decorator</a></li>
+            <li class="second-level"><a href="#tooling">Tooling</a></li>
+                
+            <li class="second-level"><a href="#lista-rzeczy-do-zrobienia">Lista rzeczy do zrobienia</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="wielka-ksiega-przewinien-programistow-osadzonych">Wielka księga przewinień programistów osadzonych</h1>
+<p>Jakieś tam code guidy które podobno działają</p>
+<ul>
+<li><a href="http://pixelscommander.com/wp-content/uploads/2014/12/P10.pdf">NASA</a></li>
+<li><a href="https://google.github.io/styleguide/cppguide.html">Google</a></li>
+<li><a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">ISO C++</a></li>
+<li><a href="https://sat-polsl.gitlab.io/wiki/sat-firmware-launcher-wiki/#/Coding-guidelines">SAT</a></li>
+</ul>
+<h2 id="wstep">Wstęp</h2>
+<p>Jak wiadomo, dokumentacji nikt nie będzie czytał dokładnie, słowo w słowo.
+Więc proszę się nie zdziwić jak pojawią się tutaj jajka wielkanocno świąteczne, a forma nie będzie w pełni oficjalna.</p>
+<p>Każdy punkt będzie wyglądał na zasadzie <strong>Rozwiązanie</strong> -&gt; <strong>Problemy tego rozwiązania</strong> -&gt; <strong>Lepsze rozwiązanie</strong> + potencjalne wyjątki</p>
+<p>Będzie używany C++23, skoro robimy coś mega, to będzie nowocześnie.
+A tak naprawde to w C++23 zostały dodane m.in. takie rzeczy <code>std::expected</code></p>
+<h2 id="zaozenia">Założenia</h2>
+<p>Projekt tworzenia studenckiego satelity, <strong>nie</strong> jest projektem drogiej todo listy.</p>
+<p>Programiści, przychodzą, odchodzą, stale... Programiści w projekcie będa się przewijać, będa z różnym doświadczeniem, z różną wiedzą. 
+To jest powód dla którego kod powinien być jak najprostszy, to znaczy, bez fikuśnych tworów np <code>std::views</code>, z dużą ilością dokumentacji. W takim wypadku wdrożenie nowej osoby do projektu powinno też przebiegać szybko. </p>
+<p>Programiści będa przychodzić z innych języków. </p>
+<h3 id="todo"><em>todo</em></h3>
+<ul>
+<li>proces wdrażania nowych ludzi do projektu</li>
+</ul>
+<h2 id="setup-projektu">Setup Projektu</h2>
+<h3 id="flagi-kompilatora">Flagi kompilatora</h3>
+<p>Kompilator powinen krzyczeć na wszystkie erorry i warningi wszystko na czerwono</p>
+<p>taka litania</p>
+<pre><code>-Wall -Wextra -Wpedantic -Werror -Wconversion -Wshadow -Wstrict-overflow=5 -Wfloat-equal -Wformat=2 \
+-Wundef -Wpointer-arith -Wcast-qual -Wcast-align=strict -Wstrict-prototypes -Wwrite-strings -Wstack-protector \
+-Wswitch-enum -Wswitch-default -Wunreachable-code -Wduplicated-cond -Wduplicated-branches -Wlogical-op \
+-Wnull-dereference -Wuseless-cast -Wdouble-promotion -Walloca -Walloc-zero -Wvla -Wformat-signedness \
+-Wstrict-aliasing=3 -Wdisabled-optimization -Wunsafe-loop-optimizations -Wvector-operation-performance \
+-Wpessimizing-move -Wredundant-move -Wmisleading-indentation -Wvolatile-register-var -Wdate-time
+</code></pre>
+<h3 id="todo_1"><em>todo</em></h3>
+<ul>
+<li>jak wszystko będzie gotowe to jakiś filmik coś ten powstanie</li>
+</ul>
+<h2 id="filozofia-pisania-kodu">Filozofia pisania kodu</h2>
+<h3 id="wydajnosc">Wydajność</h3>
+<p>Wydajność nie jest najważniejsza, ale nie jest pomijalna. Wydajność kodu bezpośrednio przekłada się m.in na zużycie energii przez satelitę. </p>
+<h3 id="piszemy-kod-zgodny-ze-standardami-iso-wolnym-od-ub-i-zaleznym-od-kompilatora">Piszemy kod zgodny ze standardami ISO, wolnym od UB i zależnym od kompilatora</h3>
+<h3 id="1-czytanie-kodu">1. Czytanie Kodu.</h3>
+<p>Kod będzie czytany więcej razy, niż będzie pisany, dlatego czytelność powinna być zawsze priorytetem. Dobrze napisany kod to taki, który można łatwo zrozumieć bez konieczności głębokiej analizy. Przejrzysty kod ułatwia jego utrzymanie, modyfikację oraz współpracę w zespole.</p>
+<h3 id="2-kod-ma-wyrazac-intencje">2. Kod ma wyrażać intencje.</h3>
+<p>Pierwszym punktem żeby uczynić kod czytelniejszym, programista ma przekazywać swoje intencje w kodzie, przez nazewnictwo, dobór algorytmów i struktur danych.
+Sposób pisania kodu powinien być jak najbardziej przewidywalny dla innych.</p>
+<p>❌Funkcja c nie mówi nic o swojej intencji – nazwa jest nieczytelna.
+Parametry a i b nic nie wyjaśniają.</p>
+<pre><code class="language-cpp">    int A(int a, int b) {  
+        return a * b;  
+}  
+</code></pre>
+<p>✅Funkcja ma teraz nazwę calculateArea, co jasno określa jej cel.
+Parametry width i height mówią, do czego służą.</p>
+<pre><code class="language-cpp">    int calculateArea(int width, int height) {  
+        return width * height;  
+    }  
+</code></pre>
+<h3 id="3-type-safety-first">3. Type safety first</h3>
+<p>Zgodność typów jest jednym z najpotężniejszych narzędzi walki z robakami (en. bug) w kodzie</p>
+<p>❌</p>
+<pre><code class="language-cpp">    void print_arr(void* arr, size_t len){
+        for(int i = 0; i &lt; len; i++)
+            std::cout &lt;&lt; arr[i];
+    }
+
+✅
+```cpp
+    template &lt;typename T&gt;
+    void print_arr(std::span&lt;T&gt; arr){
+        for(const auto&amp; item : arr)
+            std::cout &lt;&lt; item;
+    }
+</code></pre>
+<h3 id="4-wybieraj-wykonanie-w-compile-time-zamiast-run-time">4. Wybieraj wykonanie w compile time zamiast run time</h3>
+<p><strong>Powód</strong>
+Jeżeli jesteś w stanie zrobić coś w compile to tym zwiększysz performance kodu.</p>
+<p><em>TODO</em>
+opisać <code>consteval</code></p>
+<p><strong>Przykład</strong></p>
+<p>❌ Funkcja zostanie wywołana dopiero w run time co go niepotrzebnie obciąży</p>
+<pre><code class="language-cpp">    constexpr float PI { 3.14159 };
+
+    float circle_area(const float r){
+        return PI * r * r;  
+    }
+
+    const area = circle_area(10.0);
+
+    std::cout &lt;&lt; area;
+</code></pre>
+<p>✅ teraz ta funkcja zostanie wywołana podczas kompilacji i run time jedyne co będzie musiał zrobić to wypisać pole</p>
+<pre><code class="language-cpp">    constexpr float PI { 3.14159 };
+
+    constexpr float circle_area(const float r){
+        return PI * r * r;  
+    }
+
+    constexpr area = circle_area(10.0);
+
+    std::cout &lt;&lt; area;
+</code></pre>
+<p><strong>Materiały</strong></p>
+<p>https://www.learncpp.com/cpp-tutorial/constexpr-functions/</p>
+<h3 id="5-abstrakcja-nie-jest-za">5. abstrakcja nie jest zła</h3>
+<p>Tworzenie abstrakcji na </p>
+<h3 id="6-pisz-kod-jak-najprosciej-sie-da">6. Pisz kod Jak najprościej sie da</h3>
+<p><strong>Powód</strong>
+Utrzymuj kod jak najprostszy, jeżeli zaawansowane struktury danych nie są niezbędne, to ich nie używaj. </p>
+<p><strong>Przykład</strong></p>
+<pre><code class="language-cpp">std::string percentage_to_rounds(float percentage){
+    std::string result{};
+
+    for (int i = 0; i &lt; 10; i++){
+        if (result/10.0f &lt;= percentage)
+            result += &quot;🔵&quot;;
+        else
+            result += &quot;⚪&quot;;
+    }
+
+    return result;
+}
+</code></pre>
+<pre><code class="language-cpp">std::string percentage_to_rounds(float percentage) {
+    if (percentage == 0)
+        return &quot;⚪⚪⚪⚪⚪⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.0 &amp;&amp; percentage &lt;= 0.1)
+        return &quot;🔵⚪⚪⚪⚪⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.1 &amp;&amp; percentage &lt;= 0.2)
+        return &quot;🔵🔵⚪⚪⚪⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.2 &amp;&amp; percentage &lt;= 0.3)
+        return &quot;🔵🔵🔵⚪⚪⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.3 &amp;&amp; percentage &lt;= 0.4)
+        return &quot;🔵🔵🔵🔵⚪⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.4 &amp;&amp; percentage &lt;= 0.5)
+        return &quot;🔵🔵🔵🔵🔵⚪⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.5 &amp;&amp; percentage &lt;= 0.6)
+        return &quot;🔵🔵🔵🔵🔵🔵⚪⚪⚪⚪&quot;
+    if (percentage &gt; 0.6 &amp;&amp; percentage &lt;= 0.7)
+        return &quot;🔵🔵🔵🔵🔵🔵🔵⚪⚪⚪&quot;
+    if (percentage &gt; 0.7 &amp;&amp; percentage &lt;= 0.8)
+        return &quot;🔵🔵🔵🔵🔵🔵🔵🔵⚪⚪&quot;
+    if (percentage &gt; 0.8 &amp;&amp; percentage &lt;= 0.9)
+        return &quot;🔵🔵🔵🔵🔵🔵🔵🔵🔵⚪&quot;
+
+    return &quot;🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵&quot;
+}
+</code></pre>
+<p>Tak, to jest przykład z mema...</p>
+<h2 id="pisanie-kodu">Pisanie Kodu</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Używamy</th>
+<th>Komentarz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>std::views</code></td>
+<td>🟨</td>
+<td>Może wprowadzać zamieszanie</td>
+</tr>
+<tr>
+<td>Makra</td>
+<td>🟨</td>
+<td>Nie jest type safe ale czasami może p</td>
+</tr>
+<tr>
+<td><code>constexpr</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>STL</td>
+<td>🟨</td>
+<td>Alternatywą często jest ETL</td>
+</tr>
+<tr>
+<td>koncepty</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>new</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>malloc</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>C Array</td>
+<td>❌</td>
+<td>Mamy <code>std::array</code></td>
+</tr>
+<tr>
+<td>C Enum</td>
+<td>❌</td>
+<td>Mamy <code>enum class</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="uzywaj-stl-etl">Używaj STL / ETL</h3>
+<p><strong>Powód</strong>
+Nie warto marnować czasu na pisanie własnych algorytmów i kontenerów</p>
+<p><strong>Przykład</strong>
+nazwa została funkcji celowo wypikana.</p>
+<p>❌ Algorytm działa poprawnie, ale nie widać na pierwszy rzut oka co robi, trzeba przekazać dwa argumenty, generalnie kongo. </p>
+<pre><code class="language-cpp">    float ...(int* tab, size_t len){
+        float sum = 0;
+
+        for(int i = 0; i &lt; len; i++)
+            sum += tab[i];
+
+        return sum / len;
+    }
+</code></pre>
+<p>🟨 Jest już type safe i ekspresywnie ze względu na użycie <code>std::span</code> i <code>std::accumulate</code> ale można lepiej...</p>
+<pre><code class="language-cpp">    float ...(std::span&lt;int&gt; tab){
+        return std::accumulate(tab.begin(), tab.end(), 0.0) / tab.size();
+    }
+</code></pre>
+<p>✅ Używanie wersji algorytmów z <code>::ranges</code> ukrywa użycie iteratorów więc mniej kodu + mniejsza szansa na błąd. </p>
+<pre><code class="language-cpp">    float ...(std::span&lt;int&gt; tab){
+        return std::ranges::accumulate(tab, 0.0) / tab.size();
+    }
+</code></pre>
+<h3 id="do-operacji-bitowych-zawsze-stdbyte">Do operacji bitowych zawsze std::byte</h3>
+<p>std::byte użyjemy jeżeli wczytujemy coś z pamięci które potem ma być jakoś zinterpretowane</p>
+<p>std::byte jest type safe i dobrze oddaje intencje.</p>
+<h2 id="funkcje">Funkcje</h2>
+<h2 id="wskazniki-do-pamieci-dynamicznej">Wskaźniki do pamięci dynamicznej</h2>
+<p>Nie używaj gołych wskaźników, są bezpieczniejsze i lepsze rozwiązania prosto z C++ w <code>&lt;memory&gt;</code> mamy do dyspozycji <code>std::unique_ptr</code> <code>std::shared_ptr</code> <code>std::weak_ptr</code>  </p>
+<h3 id="asercje-w-funkcjach">Asercje w funkcjach</h3>
+<p><strong>Powód</strong>
+Każda Funkcja powinna zawierać asercję dla przypadków które nie powinny nigdy się wydarzyć.
+Prawda jest taka im więcej checków tym lepiej dla nas, przy debugowaniu jesteśmy w stanie odrazu wykluczyć pewne przypadki,
+przy pisaniu nowych funkcjonalności będa to dla nas pierwsze testy. W ten sposób możemy też sprawdzić poprawność danych latających w programie.</p>
+<p><strong>Przykład</strong>
+❌ Jeżeli zostanie przekazany nullptr to może być nieciekawie...</p>
+<pre><code class="language-cpp">    int sum(int * tab, size_t len) {
+        int sum = 0;
+
+        for (int i = 0; i &lt; len; i++)
+            sum += tab[i];
+
+        return sum;
+    }
+</code></pre>
+<p>✅ W ten sposób upewnimy się czy <code>tab</code> nie jest nullptr i czy nie mamy błędu w data flow</p>
+<pre><code class="language-cpp">    int sum(int * tab, size_t len) {
+        assert(tab != nullptr);
+        assert(len != 0);
+        assert(len &lt; 0);
+
+        int sum = 0;
+
+        for (int i = 0; i &lt; len; i++)
+            sum += tab[i];
+
+        return sum;
+    }
+</code></pre>
+<p><strong>Źródła</strong>
+<a href="http://pixelscommander.com/wp-content/uploads/2014/12/P10.pdf">NASA pkt.5</a> </p>
+<h3 id="error-handling">Error handling</h3>
+<p>std::expected</p>
+<p><strong>Materiały</strong>
+<a href="https://www.youtube.com/watch?v=n1sJtsjbkKo&amp;t=2605s">CppCon</a></p>
+<h3 id="dugosc-funkcji">Długość funkcji</h3>
+<p>Funkcje nie powinny być dłuższe niż 40 linijek. Nie wymagamy od programistów pionowego monitora 29' do czytania kodu.
+Jeżeli funkcja jest za długa powinieneś podzielić ją na mniejsze funkcje. </p>
+<h3 id="jedna-funkcja-jedno-zadanie">Jedna funkcja = Jedno zadanie</h3>
+<p>Funkcje powinny być </p>
+<h3 id="trailing-return-type">[?] Trailing Return Type</h3>
+<pre><code class="language-cpp">auto get_raw_data() -&gt; void {
+    ... 
+}
+</code></pre>
+<h3 id="sprawdzanie-poprawnosci-danych">Sprawdzanie poprawności danych</h3>
+<p><strong>Powód</strong>
+Jeżeli są jakieś wymagania od danych wejściowych funkcji, to <strong>nie</strong> możesz założyć że zostaną one przekazane prawidłowe.
+ Więc na początku każdej funkcji muszą zostać sprawdzone argumenty pod kątem poprawności.</p>
+<p><strong>Przykład</strong> </p>
+<p>❌ </p>
+<pre><code class="language-cpp">    float divide(float a, float b) {
+        return a / b;
+    }
+</code></pre>
+<p>✅ Można generycznie obsłużyć błąd; </p>
+<pre><code class="language-cpp">    enum class DivisionError{
+        division_by_zero,
+    }
+
+    std::expected&lt;float, DivisionError&gt; divide(float a, float b) {
+        if (b == 0) return DivisionError::division_by_zero;
+
+        return a / b;
+    }
+</code></pre>
+<h3 id="const-argumenty">const argumenty</h3>
+<h3 id="const-metody">const metody</h3>
+<h3 id="noexcept">[?] noexcept</h3>
+<h2 id="struktury-danych">Struktury danych</h2>
+<h3 id="c-array-vs-stdarray">C-array vs std::array</h3>
+<p><strong>Powód</strong>
+Nigdzie nie chcemy używać C-array, bo mają całkiem sporo problemów, tracą informację o długośći tablicy po przekazaniu do funkcji, 
+potrzebny jest dodatkowy argument informujący o długości, przekazany wskaźnik może być <code>nullptr</code></p>
+<p><strong>uproszczona implementacja std::array</strong></p>
+<pre><code class="language-cpp">template &lt;typname T, std::size_t SIZE&gt;
+struct array {
+    data T[SIZE];
+
+    size_t size() {
+        return SIZE;
+    }
+};
+</code></pre>
+<p>Jeżeli znasz już templaty i przeczytałeś powyższy kod, to powinieneś już wiedzieć że <code>std::array</code> jest mega wersją C-array bo jest type safe, nie traci informacji o rozmiarze podczas przekazywania do funkcji, posiada iteratory <code>begin()</code> i <code>end()</code> i nie ma problemów z przekazywaniem do funkcji jako referencje lub wartość.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Jest tutaj dużo miejsc gdzie coś może pójść nie tak, w <code>len</code> może nie być długościi tablicy, <code>arr</code> może być <code>nullptr</code> </p>
+<pre><code class="language-cpp">    int sum(int * arr, size_t len){
+        int sum{0};
+        for(int i = 0; i &lt; len; i++){
+            sun += arr[i];
+        }
+
+        return sum;
+    }
+</code></pre>
+<p>✅ Co prawda więcej pisania i kod wykonywalny będzie większy ale powyższe błędy nie mają prawa tutaj wystąpić, dodatkowo nie ma problemu z przekazaniem tablicy po wartości i składnia jest dużo bardziej czytelna.</p>
+<pre><code class="language-cpp">    template&lt;std::size_t SIZE&gt;
+    int sum(std::array&lt;int, SIZE&gt; &amp; arr) {
+        int sum {0};
+        for(auto num : arr) { 
+            sum += num;
+        }
+
+        return arr;
+    }
+</code></pre>
+<p><strong>Materiały</strong>
+<a href="https://en.cppreference.com/w/cpp/container/array">cpp reference</a></p>
+<h3 id="int-arr-size_t-len-vs">int* arr + size_t len vs</h3>
+<h2 id="zmienne">Zmienne</h2>
+<h3 id="inicjalizacja-zmiennych">Inicjalizacja zmiennych</h3>
+<p><strong>Powód</strong>
+Zmienne będziemy inicjalizować używając <code>{}</code> nie <code>=</code> może się to wydawać dziwne i nie intuicyjne ale w ten sposób kompilator będzie mógł mieć wielki problem jeżeli chcemy zaincjalizować zmienne czymś co będzie stratne.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Trzeba się modlić o error</p>
+<pre><code class="language-cpp">    int y = 7.9;
+</code></pre>
+<p>✅ Kompilator wyrzuci błąd że chcemy niejawnie przekonwertować <code>double</code> na <code>int</code></p>
+<pre><code class="language-cpp">    int x {7.9};
+</code></pre>
+<p><strong>Źródło</strong>
+<a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#es23-prefer-the--initializer-syntax">ISO C++</a></p>
+<h3 id="uzywanie-auto">Używanie auto</h3>
+<p><strong>Powód</strong>
+Auto może w dużym stopniu uprościć kod, ale w pewnych przypadkach jest to po prostu nie wskazane.</p>
+<p><strong>Przykład</strong>
+❌ Kiedy kompilator będzie musiał z powietrza dedukować typ </p>
+<pre><code class="language-cpp">    auto num = 1;
+</code></pre>
+<p>❌ Bez sprawdzenia typu <code>divide</code> nie jesteśmy w stanie określić jaki będzie miało to typ</p>
+<pre><code class="language-cpp">    auto = divide(1,2);
+</code></pre>
+<p>✅ auto w for-range loop 
+  <code>cpp
+    for (auto num : numbers)</code> </p>
+<p>✅ Kiedy w tej linijce pojawia się już typ </p>
+<pre><code class="language-cpp">    auto ptr = std::make_unique&lt;int&gt;(some_num);
+</code></pre>
+<p>✅ Jeżeli typ jest logiczny</p>
+<pre><code class="language-cpp">    auto begin = vec.begin();
+</code></pre>
+<h2 id="nazewnictwo">Nazewnictwo</h2>
+<p>Nazwy zmiennych powinny przedewszystkim informować o tym co jest w środku, używaj deskryptywnych nazw
+Nie bój się długich nazw, większość z nas ma takie coś jak TAB, więc to czy zmienna ma 5 znaków czy 15 nie robi różnicy bo i tak użyjemy autocomplete.</p>
+<table>
+<thead>
+<tr>
+<th>Rodzaj</th>
+<th>Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zmienne globalne</td>
+<td>UPPER_SNAKE_CASE</td>
+</tr>
+<tr>
+<td>Makra</td>
+<td>UPPER_SNAKE_CASE</td>
+</tr>
+<tr>
+<td>constexpr</td>
+<td>UPPER_SNAKE_CASE</td>
+</tr>
+<tr>
+<td>Funkcje</td>
+<td>snake_case</td>
+</tr>
+<tr>
+<td>Metody</td>
+<td>snake_case</td>
+</tr>
+<tr>
+<td>zmienne</td>
+<td>snake_case</td>
+</tr>
+<tr>
+<td>Klasy</td>
+<td>PascalCase</td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td>PascalCase</td>
+</tr>
+<tr>
+<td>Aliasy</td>
+<td>PascalCase</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>PascalCase</td>
+</tr>
+<tr>
+<td>Wartości enuma</td>
+<td>snake_case</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nazwa-enuma-w-liczbie-pojedynczej">nazwa Enuma w liczbie pojedyńczej</h3>
+<p>Nazwa enuma zawsze powinna być w liczbie pojedyńczej.</p>
+<p>❌ Nie Color<strong>s</strong>, tylko Color</p>
+<pre><code class="language-cpp">enum class Colors {
+    red,
+    green,
+    blue,
+} ```
+
+✅ 
+```cpp 
+enum class Color {
+    red   = 0,
+    green = 1,
+    blue  = 2,
+}
+</code></pre>
+<h3 id="typy-do-reprezentacji-jednostek-si">[?] Typy do reprezentacji jednostek SI</h3>
+<p>https://github.com/mpusz/mp-units
+https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p1935r2.html#revision-history</p>
+<h3 id="nazewnictwo-for-range-loop">Nazewnictwo for-range loop</h3>
+<p>Jak wiadomo jeżeli iterujemy przez pewną kolekcje i interesuje nas tylko zawartość tej kolekcji użyjemy for-range loop,
+co jest dobre, ale żeby jeszcze lepiej to zrobić możemy nazywać iterator zgodnie z tym co będzie w nim przechowywane. </p>
+<p>❌ Typowy fragment kodu w którym bez szerszego kontekstu nie wiadomo o co chodzi </p>
+<pre><code class="language-cpp">    float total_distance = 0.0f;
+
+    for (auto x : vec){
+        total_distance += sqrt(x.x * x.x + x.y * x.y)    
+    }
+</code></pre>
+<p>✅ Wiadomo przez co iterujemy i wiadomo co jest </p>
+<pre><code class="language-cpp">    float total_distance = 0.0f
+
+    for (auto point : points){
+        total_distance += sqrt(point.x * point.x + point.y * point.y)    
+    }
+</code></pre>
+<h3 id="skroty-w-nazewnictwie">[?] Skróty w nazewnictwie</h3>
+<p>Używamy tylko skrótów które znajdują się w słowniczku</p>
+<h3 id="uzywanie-namespace">Używanie Namespace</h3>
+<h3 id="nie-uzywamy-emoji-jako-nazw">Nie używamy emoji jako nazw</h3>
+<p>Przykład ❌</p>
+<pre><code class="language-cpp">    class Kernel;
+
+    Kernel 🥚;
+</code></pre>
+<p>Przykład ✅</p>
+<pre><code class="language-cpp">    class Kernel;
+
+    Kernel kernel;
+</code></pre>
+<h2 id="szablony">Szablony</h2>
+<h3 id="koncepty">Koncepty</h3>
+<p>Koncepty zostały wprowadzone w C++20, jest to niejako typ parametru szablonu, służą one do polepszenia jakości błędów generowanych przez templaty, z tego każda klasa/funkcja używająca szablonu mająca pewne ograniczenia powinna być ograniczona konceptem</p>
+<p>❌ Jednak informacja <code>'const char*' and 'const char*' to binary 'operator+'</code> nie jest taka czytelna</p>
+<pre><code class="language-cpp">template &lt;typename T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+
+add(&quot;PIT&quot;, &quot;BULL&quot;);
+</code></pre>
+<p><strong>Błędy</strong></p>
+<blockquote>
+<p>error: invalid operands of types 'const char<em>' and 'const char</em>' to binary 'operator+' </p>
+</blockquote>
+<p>✅ Dostaniemy czytelny błąd i jeszcze IDE będzie podkreślało błąd</p>
+<pre><code class="language-cpp">template &lt;typename T&gt;
+concept Addable = requires(T a, T b) {
+    { a + b } -&gt; same_as&lt;T&gt;;
+};
+
+
+template &lt;Addable T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+
+add(&quot;SUPER&quot;, &quot;BLEDY!&quot;);
+</code></pre>
+<p><strong>Błędy</strong></p>
+<blockquote>
+<p>note: candidate: 'template<class T>  requires  Addable<T> T add(T, T)'</p>
+</blockquote>
+<p><strong>Materiały</strong></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/constraints">Cpp reference</a></p>
+<h2 id="enumy">Enumy</h2>
+<h3 id="nie-korzystamy-z-enum">Nie korzystamy z enum</h3>
+<p><strong>Powód</strong>
+Po to bozia C++ wymyśliła <code>enum class</code> żeby z tego korzystać. <code>enum</code> de facto tworzy zmienne globalne, <code>enum class</code> robi to podobnie tylko że robi to w przestrzeni nazw i klucze <code>enum class</code> są silnie typowane, to znaczy że trzeba specjalnie to zrzutować na jakiś typ liczbowy </p>
+<p><strong>Przykład</strong></p>
+<p><em>TODO</em> 
+- Przykłady</p>
+<p>❌</p>
+<pre><code class="language-cpp"></code></pre>
+<p>✅ </p>
+<pre><code class="language-cpp"></code></pre>
+<p><strong>Materiały</strong></p>
+<p>https://agrawalsuneet.github.io/blogs/enum-vs-enum-class-in-c++/</p>
+<h3 id="wartosci-enuma">Wartości enuma</h3>
+<p><strong>Powód</strong>
+Wartości enuma powinny informować o jego zastosowaniu, to znaczy że jeżeli enum będzie używany tylko jako typ i wartość nie będzie nas interesować to wtedy nie musimy pisać wartości bo jeszcze sie pomylimy i buga będziemy tydzień szukać.</p>
+<p>Jeżeli interesuje nas wartość to zapisujemy ją we wszystkich kluczach enuma, najczęściej będziemy używać tego do konfiguracji czegoś więc zapis w hexie będzie najodpowiedniejszy  </p>
+<p><strong>Przkyłady</strong></p>
+<p>✅ Jest okej, raczej nie będzie interesować nas wartość tego. </p>
+<pre><code class="language-cpp">    enum class Gender{
+        male,
+        female,
+        🚀, 
+    }
+</code></pre>
+<p>✅ Jest super, dokumentacja korzysta z liczb zapisanych w hexie, użyjemy tego elegancko</p>
+<pre><code class="language-cpp">    enum class BME280Mode{
+        i2c          = 0x04,
+        spi          = 0x10,
+        two_wire_spi = 0x20,
+    }
+</code></pre>
+<h2 id="formatowanie">Formatowanie</h2>
+<h3 id="forward-declaration">Forward Declaration</h3>
+<h3 id="nawiasy-wasate">Nawiasy wąsate</h3>
+<p><a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R">K&amp;R</a></p>
+<h3 id="odstepy">Odstępy</h3>
+<pre><code>1 tabulacja - 4 spacje
+</code></pre>
+<h3 id="struktura-projektu">Struktura projektu</h3>
+<p>Używamy plików <code>.hpp</code> i <code>.cpp</code></p>
+<h2 id="komentarze">Komentarze</h2>
+<p>Kod powinien być pisany w taki sposób żeby komentarze były zbędne.</p>
+<p><strong>Wyjątek</strong>
+Czasmi oczywiście nie jest to możliwe.
+Nie zawsze da się przekazać intencje używajac tylko kodu, szczególnie jeżeli jest to ekstremalnie zoptymalizowany fragment kodu lub implementacja jakiegoś interfejsu.</p>
+<h3 id="link-do-manuala">Link do Manuala</h3>
+<p><strong>Powód</strong>
+Tworząc implementację drivera pewnego hardwaru będziemy chcieli w komentarzu zostawić link do datasheeta z którego korzystaliśmy, ma to na celu wyeliminowania problemów gdzie w komentarzu/dokumentacji jest strona z datasheeta ale nie pokrywa się z naszym datasheetem. Również zmniejsza czas na szukanie datasheetów. </p>
+<p>✅ Elegancko jest link do ukochanego BME280</p>
+<pre><code class="language-cpp">// Datasheet
+// https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf
+
+class BME280{
+    ... 
+};
+</code></pre>
+<h3 id="klasy">Klasy</h3>
+<h3 id="dziedziczenie">Dziedziczenie</h3>
+<p>Dziedziczenie OK, Dziedziczenie wielokrotne nie ok, mega rozpierdol itp.</p>
+<h3 id="struct-vs-class">[?] Struct vs Class</h3>
+<p><strong>Powód</strong>
+Struct powinien służyć tylko wyłącznie jako DTO, jedyne metody jakie może mieć to akcesory do pól i proste metody obliczające swoje własności. Klasa z kolei jest opisem obiektu, ma to służyć rozróżnieniu z czym mamy doczynienia.</p>
+<p><strong>Przykład</strong></p>
+<p>struct</p>
+<pre><code class="language-cpp">    struct Vec2 {
+        float x;
+        float y;
+
+        float length(){
+            return sqrt(x*x + y*y);
+        }
+    }
+</code></pre>
+<p>class </p>
+<pre><code class="language-cpp">    class BME280{
+        void read_raw_data();
+        void read_data(); 
+    }
+</code></pre>
+<h3 id="inicjaizaca-pol">Inicjaizaca pól</h3>
+<p>Każda Klasa każde pole które może powinna zaincjalizować używając <code>{}</code> unikniemy w ten sposób dużej ilości pisania kodu w konstruktorze, jeżeli konstruktor przyjmuje wartości to powinny zostać przypisane w liscie inicjalizacyjnej</p>
+<h3 id="funkcja-inicjalizacyjna">Funkcja inicjalizacyjna</h3>
+<p><strong>Powód</strong>
+Każda klasa powinna funkcje <code>init()</code> w której zostaną wykonane wszysktie operacje ciężkie i takie które mogą wyrzucić błąd.</p>
+<p><strong>Przykład</strong></p>
+<p>❌ Obsługa błędów jest prawie niemożliwa, po utworzeniu instancji odrazu będzie chciała się zaincjalizować</p>
+<pre><code class="language-cpp">class BME280 {
+
+    BME280(){
+        if (read_id() != 0x80){
+            std::cout &lt;&lt; &quot;BME280 connection failed&quot;;
+            while(1);
+        }
+    }
+}
+</code></pre>
+<p>✅ Można generycznie obsłużyć błąd, można powtórzyć inicjalizację przy błędzie.</p>
+<pre><code class="language-cpp">enum class I2CError{
+    id_read = 0;
+    some_error = 999;
+}
+
+class BME280 {
+
+    BME280(){}
+
+    //[?] czy nie robić tego w ten sposób bo wartość nas nie interesuje i tak I2CEror init()
+    std::expected&lt;bool,I2CEror&gt; init(){
+        if (read_id() != 0x80)
+            return I2CError::id_read;
+        return true;
+    }
+}
+</code></pre>
+<p><strong>Źródła</strong>
+https://google.github.io/styleguide/cppguide.html#Doing_Work_in_Constructors</p>
+<h3 id="akcja-pena-enkapsulacja-i-akcesory">Akcja pełna enkapsulacja i akcesory</h3>
+<h3 id="uzywanie-this-">[?] Używanie this-&gt;...</h3>
+<p><strong>Powód</strong>
+    Jak przekazać informację o tym że zmienna jest polem klasy? rozwiązań jest kilka </p>
+<pre><code>- używanie `_` przed nazwą pola np. `_count`
+- `m` przed nazwą pola np. `m_count`
+- `this-&gt;` this-&gt;count
+</code></pre>
+<h3 id="uzywaj-privateprotected-i-public">Używaj private,protected i public</h3>
+<p><strong>Powód</strong>
+Definiuj dobrze interfejsy klas zgodnie z ich przeznaczeniem, jeżeli użycie metody poza klasą nie jest wymagane oznacz ją jako private</p>
+<p><strong>Przykład</strong></p>
+<pre><code class="language-cpp">
+</code></pre>
+<h2 id="obsuga-gita">Obsługa gita</h2>
+<p>Każdy branch mergowany do mastera musi posiadać:</p>
+<ul>
+<li>Stworzoną dokumentację nowych funkcjionalności</li>
+<li>Zostać zatwierdzonym przez 2 innych programistów</li>
+<li>Być zgodnym ze stylem pisania kodu</li>
+</ul>
+<h2 id="tworzenie-dokumentacji">Tworzenie dokumentacji</h2>
+<p>Dokumentacja powinna przedewszystkim istnieć i być aktualna. 
+Brak dokumentacji czy jej niezgodność z rzeczywistością nie tylko powoduje spowolnienie prac ale przede wszystkim frustracje. 
+A jak dobrze wiadomo jedyne osoby które mogą pisać dokumetancje to są ludzie którzy stworzyli pewny fragment kodu, 
+z tego powodu te zasady mające na celu uprościć do minimum, ułatwić i unifikować tooling, sposób i styl pisania dokumentacji.</p>
+<p><a href="https://www.doxygen.nl/">Doxygen</a></p>
+<h3 id="brief-funkcji">Brief funkcji</h3>
+<h2 id="inne">Inne</h2>
+<h3 id="pragma-once">#pragma once</h3>
+<p><strong>Powód</strong>
+Każdy plik <code>.hpp</code> MUSI mieć coś żeby przeciwdziałać wielokrotnym dołączeniom, w C++ są 2 sposoby na zrobienie tego
+używając <code>#define</code> guarda i <code>#pragma once</code>, ten pierwszy jest działający niezależnie od platformy, ale ma kilka problemów:</p>
+<ul>
+<li>Dużo pisania</li>
+<li>Możliwa podwójna definicja makra</li>
+<li>Żeby gwarantować unikalność trzeba by używać pełnej ścieżki do pliku</li>
+<li>Trzeba ręcznie uwzględnić zmiane makra po zmianie nazwy pliku </li>
+</ul>
+<p><code>#pragma once</code> to wszystko rozwiązuje, robi wszystko automatycznie i bezpiecznie.
+Jedyne problemy z <code>#pragma once</code> to że nie jest oficjalną częścią standardu więc nie musi działać wszędzie, ale u nas akurat działa :3</p>
+<p><strong>Przykład</strong></p>
+<p>❌</p>
+<pre><code class="language-cpp">    #ifndef DRIVERS_UART_LL_HPP_
+    #define DRIVERS_UART_LL_HPP_
+
+    ... 
+
+    #endif // FILE_HPP
+</code></pre>
+<p>✅</p>
+<pre><code class="language-cpp">    #pragma once
+
+    ...
+
+</code></pre>
+<h2 id="testowanie">Testowanie</h2>
+<h3 id="testy-jednostkowe">Testy jednostkowe</h3>
+<h3 id="hardware-in-the-loop">Hardware in the loop</h3>
+<h3 id="data-injection">Data injection</h3>
+<h2 id="design-paterny">Design Paterny</h2>
+<h3 id="maszyna-stanu">Maszyna stanu</h3>
+<h3 id="singleton">Singleton</h3>
+<h3 id="factory">Factory</h3>
+<h3 id="decorator">Decorator</h3>
+<h2 id="tooling">Tooling</h2>
+<h2 id="lista-rzeczy-do-zrobienia">Lista rzeczy do zrobienia</h2>
+<p><strong>Krytyczne</strong>
+- Telekomendy
+- System updateowania
+- File system
+- Połączenie radiowe</p>
+<p><strong>Dobrze zrobić</strong>
+- Zabezpieczenie połączenia</p></div>
+        
+        
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.asd</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
+      <footer class="col-md-12 text-center">
+          
+          
             <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = ".",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "."</script>
+    
+    <script src="js/base.js"></script>
+    <script src="search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
                 <form>
                     <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+                <div id="mkdocs-search-results"></div>
             </div>
             <div class="modal-footer">
             </div>
@@ -125,7 +956,7 @@ docs/
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -160,11 +991,11 @@ docs/
         </div>
     </div>
 </div>
-
     </body>
+
 </html>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-02-24 23:27:25.232606+00:00
+Build Date UTC : 2025-03-05 08:44:46.639763+00:00
 -->
