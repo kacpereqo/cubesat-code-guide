@@ -842,7 +842,10 @@ Jedyne problemy z `#pragma once` to że nie jest oficjalną częścią standardu
 
 **Krytyczne**
 - Telekomendy
-- System updateowania
+- System updateowania 
+  - Bootloader
+    - https://interrupt.memfault.com/blog/how-to-write-a-bootloader-from-scratch#why-you-may-need-a-bootloader
+  - Lua
 - File system
 - Połączenie radiowe
 
