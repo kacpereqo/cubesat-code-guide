@@ -48,6 +48,7 @@ taka litania
 - jak wszystko będzie gotowe to jakiś filmik coś ten powstanie
 
 ## Filozofia pisania kodu
+Czyli bardzo wysoko poziomowo o tym jakie cechy powinien mieć pisany kod i co jest dla nas ważne. 
 
 ### Wydajność 
 Wydajność nie jest najważniejsza, ale nie jest pomijalna. Wydajność kodu bezpośrednio przekłada się m.in na zużycie energii przez satelitę. 
@@ -137,13 +138,15 @@ opisać `consteval`
 https://www.learncpp.com/cpp-tutorial/constexpr-functions/
 
 ### 5. abstrakcja nie jest zła
-Tworzenie abstrakcji na 
+Wyabstrachowanie skomplikowanych fragmentów kodu do funkcji. Czy odizolowanie pewnego kodu ma zalety nie tylko wizualne ale i praktyczne. Jeżeli tworzymy jakiś niskopoziomy driver dla przykładu UART to chcemy wszyskto wyizolować do tego stopnia że końcowy użytkownik który będzie używał tego uarta będzie miał jedną funkcje do wysylania danych i odbierania, wszystko co jest pod spodem go nie interesuje i tak powinno zostać
+
+**Przykład**
 
 
 ### 6. Pisz kod Jak najprościej sie da 
 **Powód**
 Utrzymuj kod jak najprostszy, jeżeli zaawansowane struktury danych nie są niezbędne, to ich nie używaj. 
-
+Chciałbym żeby kod był pisany jak C z pełnym type safety i compile time featurami. Odpuść ego wielkiego programisty i nie używaj czegoś czego do końca sam nie rozumiesz tylko po to żeby komuś to tłumaczyć.
 
 **Przykład**
 ```cpp
@@ -340,9 +343,30 @@ Jeżeli są jakieś wymagania od danych wejściowych funkcji, to **nie** możesz
     }
 ```
 
-### const argumenty 
+## Const
 
-### const metody 
+### const zmienne / argumenty 
+Jeżeli używasz gdzieś zmiennych czy to argumentów i ta zmienna nie będzie modyfikowana, dodaj jej modyfikator `const` żeby lepiej 
+
+**Przykład**
+✅
+```cpp
+    int 
+```
+
+❌
+
+**Źródło**
+[Google](https://google.github.io/styleguide/cppguide.html#Use_of_const)
+
+### const metody
+Jeśli metoda nie ma side-effect'ów na instancji, czyli nie modyfikuje pól obiektu, weź no dorzuć tam const na koniec metody, żeby było wiadomo o co chodzi. Takie zachowanie pomaga po prostu w poprawnej enkapsulacji ,
+
+**Przykład**
+
+✅
+
+❌
 
 ### [?] noexcept
 
