@@ -98,6 +98,9 @@ Zgodność typów jest jednym z najpotężniejszych narzędzi walki z robakami (
     }
 ```
 
+**Materiały**
+[CppCon](https://www.youtube.com/watch?v=I8UvQKvOSSw)
+
 ### 4. Wybieraj wykonanie w compile time zamiast run time 
 **Powód**
 Jeżeli jesteś w stanie zrobić coś w compile to tym zwiększysz performance kodu.
